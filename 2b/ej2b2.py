@@ -35,38 +35,38 @@ Salida esperada:
 
 import pandas as pd
 import sqlite3
-
+import typing as t
 
 class RamenDataAnalyzer:
     def __init__(self, file_paths):
         self.file_paths = file_paths
 
-    def to_numeric(self, s):
-        return pd.to_numeric(s, errors='coerce')
+    def to_numeric(self, string_number: str) -> t.Union[float, int, None]:
+        return pd.to_numeric(string_number, errors='coerce')
 
-    def read_csv(self):
+    def read_csv(self) -> pd.DataFrame:
         dataframe = pd.read_csv(self.file_paths['csv'])
         dataframe['Stars'] = self.to_numeric(dataframe['Stars'])
         return dataframe
 
-    def read_json(self):
+    def read_json(self) -> pd.DataFrame:
         dataframe = pd.read_json(self.file_paths['json'], lines=True)
         dataframe['Stars'] = self.to_numeric(dataframe['Stars'])
         return dataframe
 
-    def read_excel(self):
+    def read_excel(self) -> pd.DataFrame:
         dataframe = pd.read_excel(self.file_paths['xlsx'])
         dataframe['Stars'] = self.to_numeric(dataframe['Stars'])
         return dataframe
 
-    def read_sqlite(self):
+    def read_sqlite(self) -> pd.DataFrame:
         conn = sqlite3.connect(self.file_paths['sqlite'])
         dataframe = pd.read_sql("SELECT * FROM ramen_ratings", conn)
         dataframe['Stars'] = self.to_numeric(dataframe['Stars'])
         conn.close()
         return dataframe
 
-    def analyze(self):
+    def analyze(self) -> dict:
         mean_ratings = {}
         mean_ratings['csv'] = self.read_csv()['Stars'].mean()
         mean_ratings['json'] = self.read_json()['Stars'].mean()

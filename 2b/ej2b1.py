@@ -36,9 +36,11 @@ Salida esperada:
 """
 
 import pandas as pd
+import typing as t
+
 
 class CSVDataProcessor:
-    def __init__(self, file_path):
+    def __init__(self, file_path: str):
         self.file_path = file_path
         self.dataframe = None
 
@@ -57,7 +59,7 @@ class CSVDataProcessor:
     def filter_by_condition(self, condition):
         self.dataframe = self.dataframe.query(condition)
 
-    def select_data(self, row_index=None) -> pd.DataFrame:
+    def select_data(self, row_index: t.Union[int, slice] = None) -> pd.DataFrame:
         if row_index is not None:
             return self.dataframe.iloc[row_index]
         else:

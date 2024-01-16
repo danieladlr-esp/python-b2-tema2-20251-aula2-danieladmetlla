@@ -23,7 +23,7 @@ Salida esperada:
 """
 
 import pandas as pd
-from typing import Union
+import typing as t
 
 
 class CountryPopulationAnalyzer:
@@ -36,7 +36,7 @@ class CountryPopulationAnalyzer:
         self.population_data = tables[0]
         return self.population_data
 
-    def read_table_by_match(self, match_text: str) -> Union[pd.DataFrame, None]:
+    def read_table_by_match(self, match_text: str) -> t.Union[pd.DataFrame, None]:
         try:
             table_data = pd.read_html(self.url, match=match_text)
             return table_data[0] if table_data else None
