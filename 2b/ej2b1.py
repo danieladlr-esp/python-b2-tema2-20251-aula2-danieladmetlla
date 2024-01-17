@@ -1,34 +1,46 @@
 """
 Enunciado:
-Desarrolla una clase llamada `CSVDataProcessor` para realizar varias operaciones de procesamiento de datos en un archivo
-CSV.
+Desarrolla un conjunto de funciones para realizar operaciones de procesamiento de datos en un archivo CSV utilizando
+Pandas y el paradigma de programación funcional. Este enfoque debe permitir el encadenamiento fluido de operaciones
+utilizando la técnica de "pipes".
 
-La clase deberá ser capaz de realizar las siguientes tareas:
-1. Leer datos desde un archivo CSV, `read_csv()`.
-2. Renombrar columnas del DataFrame, `rename_columns(new_column_names)`.
-3. Seleccionar columnas específicas del DataFrame, `select_columns(column_names)`.
-4. Convertir columnas a valores numéricos, `convert_to_numeric(column_name)`.
-5. Seleccionar datos usando iloc, `select_data(row_index=None)`.
-6. Filtrar datos basados en una condición específica, `filter_by_condition(condition)`.
+Las funciones a desarrollar son:
+    1. Leer datos desde un archivo CSV: read_csv(file_path, **kwargs) que lee un archivo CSV y devuelve un DataFrame de
+    Pandas. Debe permitir argumentos adicionales para configurar la lectura del CSV.
+    2. Renombrar columnas del DataFrame: rename_columns(df, new_column_names) para cambiar los nombres de las columnas.
+    3. Seleccionar columnas específicas del DataFrame: select_columns(df, column_names) para elegir ciertas columnas.
+    4. Convertir columnas a valores numéricos: convert_to_numeric(df, column_name) que transforma una columna en valores
+    numéricos.
+    5. Filtrar datos basados en una condición específica: filter_by_condition(df, condition) para filtrar el DataFrame
+    según una condición.
+    6. Seleccionar datos con iloc: select_data(df, row_index=None) se utiliza para seleccionar filas específicas de un
+    DataFrame. Si row_index es un número entero, devuelve un DataFrame con la fila correspondiente a ese índice. Si es
+    un slice, devuelve las filas dentro del rango especificado. Si no se especifica row_index, devuelve el DataFrame
+    completo.
 
 Parámetros:
-    - file_path (str): Ruta del archivo CSV.
-    - new_column_names (dict): Un diccionario para renombrar columnas.
-    - column_names (list): Lista de nombres de columnas para seleccionar.
-    - column_name (str): Nombre de la columna a convertir a numérico.
-    - condition (str): Condición para filtrar datos en formato de cadena.
+    file_path (str): Ruta del archivo CSV en 'read_csv'.
+    new_column_names (dict): Diccionario para renombrar columnas en 'rename_columns'.
+    column_names (list): Lista de nombres de columnas a seleccionar en 'select_columns'.
+    column_name (str): Nombre de la columna a convertir a numérico en 'convert_to_numeric'.
+    condition (str): Condición para filtrar datos en 'filter_by_condition'.
+    row_index (int, slice): Índice de fila o rebanada de filas a seleccionar en 'select_data'.
 
-La clase `CSVDataProcessor` debe utilizar Pandas para leer y procesar los datos del CSV.
+Cada función debe aceptar un DataFrame como primer argumento y devolver un DataFrame modificado, facilitando su uso con
+el método .pipe() de Pandas para encadenar operaciones.
 
 Ejemplo:
     file_path = 'data/ramen-ratings.csv'
-    processor = CSVDataProcessor(file_path)
-    processor.read_csv()
-    processor.rename_columns({'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
-    processor.select_columns(['review_number', 'brand', 'rating'])
-    processor.convert_to_numeric('rating')
-    processor.filter_by_condition('rating > 3')
-    print(processor.select_data())
+
+    df_preprocessed = (
+        read_csv(file_path)
+        .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
+        .pipe(select_columns, ['review_number', 'brand', 'rating'])
+        .pipe(convert_to_numeric, 'rating')
+        .pipe(filter_by_condition, 'rating > 3')
+    )
+
+    print(select_data(df_preprocessed, slice(0, 5)))
 
 Salida esperada:
     Un DataFrame de Pandas con las operaciones realizadas, incluyendo los datos filtrados según la condición
@@ -38,40 +50,39 @@ Salida esperada:
 import pandas as pd
 import typing as t
 
+def read_csv(file_path: str, **kwargs) -> pd.DataFrame:
+    return pd.read_csv(file_path, **kwargs)
 
-class CSVDataProcessor:
-    def __init__(self, file_path: str):
-        self.file_path = file_path
-        self.dataframe = None
+def rename_columns(df: pd.DataFrame, new_column_names: dict) -> pd.DataFrame:
+    return df.rename(columns=new_column_names)
 
-    def read_csv(self):
-        self.dataframe = pd.read_csv(self.file_path)
+def select_columns(df: pd.DataFrame, column_names: list) -> pd.DataFrame:
+    return df[column_names]
 
-    def rename_columns(self, new_column_names):
-        self.dataframe.rename(columns=new_column_names, inplace=True)
+def convert_to_numeric(df: pd.DataFrame, column_name: str) -> pd.DataFrame:
+    df[column_name] = pd.to_numeric(df[column_name], errors='coerce')
+    return df
 
-    def select_columns(self, column_names):
-        self.dataframe = self.dataframe[column_names]
+def filter_by_condition(df: pd.DataFrame, condition: str) -> pd.DataFrame:
+    return df.query(condition)
 
-    def convert_to_numeric(self, column_name):
-        self.dataframe[column_name] = pd.to_numeric(self.dataframe[column_name], errors='coerce')
-
-    def filter_by_condition(self, condition):
-        self.dataframe = self.dataframe.query(condition)
-
-    def select_data(self, row_index: t.Union[int, slice] = None) -> pd.DataFrame:
-        if row_index is not None:
-            return self.dataframe.iloc[row_index]
+def select_data(df: pd.DataFrame, row_index: t.Union[int, slice] = None) -> pd.DataFrame:
+    if row_index is not None:
+        if isinstance(row_index, int):
+            return df.iloc[[row_index]]  # Útil para un índice entero
         else:
-            return self.dataframe
+            return df.iloc[row_index]  # Útil para un slice
+    else:
+        return df
 
 
 # Para probar el código, descomenta las siguientes líneas
-# file_path = 'data/ramen-ratings.csv'
-# processor = CSVDataProcessor(file_path)
-# processor.read_csv()
-# processor.rename_columns({'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
-# processor.select_columns(['review_number', 'brand', 'rating'])
-# processor.convert_to_numeric('rating')
-# processor.filter_by_condition('rating > 3')
-# print(processor.select_data(slice(0, 5)))
+file_path = 'data/ramen-ratings.csv'
+
+df = (read_csv(file_path)
+      .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
+      .pipe(select_columns, ['review_number', 'brand', 'rating'])
+      .pipe(convert_to_numeric, 'rating')
+      .pipe(filter_by_condition, 'rating > 3'))
+
+print(select_data(df, slice(0, 5)))
