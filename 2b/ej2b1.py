@@ -77,12 +77,12 @@ def select_data(df: pd.DataFrame, row_index: t.Union[int, slice] = None) -> pd.D
 
 
 # Para probar el código, descomenta las siguientes líneas
-file_path = 'data/ramen-ratings.csv'
-
-df = (read_csv(file_path)
-      .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
-      .pipe(select_columns, ['review_number', 'brand', 'rating'])
-      .pipe(convert_to_numeric, 'rating')
-      .pipe(filter_by_condition, 'rating > 3'))
-
-print(select_data(df, slice(0, 5)))
+# file_path = 'data/ramen-ratings.csv'
+#
+# df = (read_csv(file_path)
+#       .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
+#       .pipe(select_columns, ['review_number', 'brand', 'rating'])
+#       .pipe(convert_to_numeric, 'rating')
+#       .pipe(filter_by_condition, 'rating > 3'))
+#
+# print(select_data(df, slice(0, 5)))

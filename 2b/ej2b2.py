@@ -73,11 +73,11 @@ def analyze(file_paths: dict) -> dict:
     return mean_ratings
 
 # Para probar el código, descomenta las siguientes líneas
-file_paths = {
-    'csv': 'data/ramen-ratings.csv',
-    'json': 'data/ramen-ratings.json',
-    'xlsx': 'data/ramen-ratings.xlsx',
-    'sqlite': 'data/ramen-ratings.db'
-}
-
-print(analyze(file_paths))
+# file_paths = {
+#     'csv': 'data/ramen-ratings.csv',
+#     'json': 'data/ramen-ratings.json',
+#     'xlsx': 'data/ramen-ratings.xlsx',
+#     'sqlite': 'data/ramen-ratings.db'
+# }
+#
+# print(analyze(file_paths))

@@ -50,8 +50,8 @@ def count_tables(tables: t.List[pd.DataFrame]) -> int:
     return len(tables)
 
 # Para probar el código, descomenta las siguientes líneas
-url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
-tables = read_population_data(url)
-print(f"Número de tablas en la página: {count_tables(tables)}")
-print(get_table_by_match(tables, "Spain"))
-print(f"Tabla 2: {read_population_data(url)[1]}")
+# url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
+# tables = read_population_data(url)
+# print(f"Número de tablas en la página: {count_tables(tables)}")
+# print(get_table_by_match(tables, "Spain"))
+# print(f"Tabla 2: {read_population_data(url)[1]}")
