@@ -1,88 +1,70 @@
 """
 Enunciado:
-Desarrolla un conjunto de funciones para realizar operaciones de procesamiento de datos en un archivo CSV utilizando
-Pandas y el paradigma de programación funcional. Este enfoque debe permitir el encadenamiento fluido de operaciones
-utilizando la técnica de "pipes".
+Desarrolla un conjunto de funciones para leer y procesar datos de archivos CSV utilizando Pandas, abordando distintos
+escenarios comunes en el análisis de datos mediante Pandas y la funsion "read_csv()". Se proporciona un archivo CSV y se
+deberán completar las funciones para leer y formatear los datos.
 
-Las funciones a desarrollar son:
-    1. Leer datos desde un archivo CSV: read_csv(file_path, **kwargs) que lee un archivo CSV y devuelve un DataFrame de
-    Pandas. Debe permitir argumentos adicionales para configurar la lectura del CSV.
-    2. Renombrar columnas del DataFrame: rename_columns(df, new_column_names) para cambiar los nombres de las columnas.
-    3. Seleccionar columnas específicas del DataFrame: select_columns(df, column_names) para elegir ciertas columnas.
-    4. Convertir columnas a valores numéricos: convert_to_numeric(df, column_name) que transforma una columna en valores
-    numéricos.
-    5. Filtrar datos basados en una condición específica: filter_by_condition(df, condition) para filtrar el DataFrame
-    según una condición.
-    6. Seleccionar datos con iloc: select_data(df, row_index=None) se utiliza para seleccionar filas específicas de un
-    DataFrame. Si row_index es un número entero, devuelve un DataFrame con la fila correspondiente a ese índice. Si es
-    un slice, devuelve las filas dentro del rango especificado. Si no se especifica row_index, devuelve el DataFrame
-    completo.
+Las funciones y escenarios a desarrollar son:
+    - Leer datos desde un archivo CSV básico: read_csv_basic(file_path) que lee un archivo CSV sencillo y devuelve un
+    DataFrame de Pandas.
+    - Leer CSV con encabezado no estándar: read_csv_header_issue(file_path, header_row) que lee un archivo CSV donde los
+    datos comienzan después de la cuarta fila.
+    - Leer CSV con multi-índice: read_csv_multi_index(file_path, index_cols) que lee un archivo CSV y utiliza múltiples
+    columnas como índices.
+    - Leer CSV con separador no estándar: read_csv_custom_separator(file_path, separator) que lee un archivo CSV
+    utilizando un separador diferente al predeterminado y separador decimal con coma. Además, esta función debe
+    convertir la columna 'Stars' a tipo flotante.
 
 Parámetros:
-    file_path (str): Ruta del archivo CSV en 'read_csv'.
-    new_column_names (dict): Diccionario para renombrar columnas en 'rename_columns'.
-    column_names (list): Lista de nombres de columnas a seleccionar en 'select_columns'.
-    column_name (str): Nombre de la columna a convertir a numérico en 'convert_to_numeric'.
-    condition (str): Condición para filtrar datos en 'filter_by_condition'.
-    row_index (int, slice): Índice de fila o rebanada de filas a seleccionar en 'select_data'.
+    file_path (str): Ruta del archivo CSV.
+    header_row (int): Número de fila donde comienzan los datos (para read_csv_header_issue).
+    index_cols (list): Lista de columnas para usar como índices (para read_csv_multi_index).
+    separator (str): Separador utilizado en el CSV (para read_csv_custom_separator).
 
-Cada función debe aceptar un DataFrame como primer argumento y devolver un DataFrame modificado, facilitando su uso con
-el método .pipe() de Pandas para encadenar operaciones.
+Cada función debe devolver un DataFrame de Pandas, permitiendo a los estudiantes ver el efecto de diferentes modos de lectura de archivos CSV.
 
 Ejemplo:
-    file_path = 'data/ramen-ratings.csv'
+    df_basic = read_csv_basic(basic_csv_path)
+    df_header_issue = read_csv_header_issue(header_issue_csv_path, header_row=3)
+    df_multi_index = read_csv_multi_index(multi_index_csv_path, index_cols=['Brand', 'Style'])
+    df_semicolon = read_csv_custom_separator(semicolon_csv_path, separator=';', decimal=',')
 
-    df_preprocessed = (
-        read_csv(file_path)
-        .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
-        .pipe(select_columns, ['review_number', 'brand', 'rating'])
-        .pipe(convert_to_numeric, 'rating')
-        .pipe(filter_by_condition, 'rating > 3')
-    )
-
-    print(select_data(df_preprocessed, slice(0, 5)))
+    # Mostrar los primeros registros de cada DataFrame
+    print(df_basic.head(), df_header_issue.head(), df_multi_index.head(), df_semicolon.head())
 
 Salida esperada:
-    Un DataFrame de Pandas con las operaciones realizadas, incluyendo los datos filtrados según la condición
-    especificada.
+    Un DataFrame de Pandas para cada función.
 """
 
 import pandas as pd
 import typing as t
 
-def read_csv(file_path: str, **kwargs) -> pd.DataFrame:
-    return pd.read_csv(file_path, **kwargs)
+def read_csv_basic(file_path: str) -> pd.DataFrame:
+    return pd.read_csv(file_path)
 
-def rename_columns(df: pd.DataFrame, new_column_names: dict) -> pd.DataFrame:
-    return df.rename(columns=new_column_names)
+def read_csv_header_issue(file_path: str, header_row: int) -> pd.DataFrame:
+    return pd.read_csv(file_path, skiprows=header_row)
 
-def select_columns(df: pd.DataFrame, column_names: list) -> pd.DataFrame:
-    return df[column_names]
+def read_csv_multi_index(file_path: str, index_cols: t.List[str]) -> pd.DataFrame:
+    return pd.read_csv(file_path, index_col=index_cols)
 
-def convert_to_numeric(df: pd.DataFrame, column_name: str) -> pd.DataFrame:
-    df[column_name] = pd.to_numeric(df[column_name], errors='coerce')
-    return df
-
-def filter_by_condition(df: pd.DataFrame, condition: str) -> pd.DataFrame:
-    return df.query(condition)
-
-def select_data(df: pd.DataFrame, row_index: t.Union[int, slice] = None) -> pd.DataFrame:
-    if row_index is not None:
-        if isinstance(row_index, int):
-            return df.iloc[[row_index]]  # Útil para un índice entero
-        else:
-            return df.iloc[row_index]  # Útil para un slice
-    else:
-        return df
+def read_csv_custom_separator(file_path: str, separator: str, decimal: str) -> pd.DataFrame:
+    # convert Star column to float
+    dataframe = pd.read_csv(file_path, sep=separator, decimal=decimal)
+    dataframe['Stars'] = pd.to_numeric(dataframe['Stars'], errors='coerce')
+    return dataframe
 
 
 # Para probar el código, descomenta las siguientes líneas
-# file_path = 'data/ramen-ratings.csv'
-#
-# df = (read_csv(file_path)
-#       .pipe(rename_columns, {'Review #': 'review_number', 'Brand': 'brand', 'Stars': 'rating'})
-#       .pipe(select_columns, ['review_number', 'brand', 'rating'])
-#       .pipe(convert_to_numeric, 'rating')
-#       .pipe(filter_by_condition, 'rating > 3'))
-#
-# print(select_data(df, slice(0, 5)))
+# basic_csv_path = 'data/ramen-ratings.csv'
+# header_issue_csv_path = 'data/ej2b1/ramen_ratings_with_header_issue.csv'
+# multi_index_csv_path = 'data/ej2b1/ramen_ratings_multi_index.csv'
+# semicolon_csv_path = 'data/ej2b1/ramen_ratings_decimal_comma.csv'
+
+# df_basic = read_csv_basic(basic_csv_path)
+# df_header_issue = read_csv_header_issue(header_issue_csv_path, header_row=3)
+# df_multi_index = read_csv_multi_index(multi_index_csv_path, index_cols=['Brand', 'Style'])
+# df_semicolon = read_csv_custom_separator(semicolon_csv_path, separator=';', decimal=',')
+
+# # Mostrar los primeros registros de cada DataFrame
+# print(df_basic.head(), df_header_issue.head(), df_multi_index.head(), df_semicolon.head())
