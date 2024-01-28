@@ -2,8 +2,9 @@ import pandas as pd
 from ej2b2 import read_json_basic, read_json_with_orientation, read_json_and_normalize
 
 # Suponiendo que los JSONs están en un directorio llamado 'data'
-BASIC_JSON_PATH = 'data/ramen-ratings.json'
-ORIENT_JSON_PATH = 'data/ej2b2/ramen-ratings-records.json'
+BASIC_JSON_PATH = 'data/ej2b2/ramen-ratings.json'
+RECORDS_JSON_PATH = 'data/ej2b2/ramen-ratings-records.json'
+TABLE_JSON_PATH = 'data/ej2b2/ramen-ratings-table.json'
 NORMALIZE_JSON_PATH = 'data/ej2b2/ramen-ratings-nested.json'
 
 def test_read_json_basic():
@@ -12,7 +13,12 @@ def test_read_json_basic():
     assert not df.empty
 
 def test_read_json_with_orientation():
-    df = read_json_with_orientation(ORIENT_JSON_PATH, orient='records')
+    df = read_json_with_orientation(RECORDS_JSON_PATH, orient='records')
+    assert isinstance(df, pd.DataFrame)
+    assert not df.empty
+
+def test_read_json_with_orientation():
+    df = read_json_with_orientation(TABLE_JSON_PATH, orient='table')
     assert isinstance(df, pd.DataFrame)
     assert not df.empty
 

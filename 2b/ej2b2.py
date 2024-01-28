@@ -55,7 +55,7 @@ def read_json_and_normalize(file_path: str, record_path: t.List[str]) -> pd.Data
 # Para probar el código, descomenta las siguientes líneas
 json_basic_path = 'data/ej2b2/ramen-ratings.json'
 json_orient_path = 'data/ej2b2/ramen-ratings-records.json'
-json_table_oriented_path = 'data/ej2b2/ramen-ratings-table-oriented.json'
+json_table_oriented_path = 'data/ej2b2/ramen-ratings-table.json'
 json_normalize_path = 'data/ej2b2/ramen-ratings-nested.json'
 
 df_basic = read_json_basic(json_basic_path)
