@@ -1,24 +1,22 @@
 import pandas as pd
+from ej2b3 import read_sqlite_table, execute_sqlite_query
 
-# Supongamos que este es tu script con las funciones definidas
-from ej2b3 import read_population_data, get_table_by_match, count_tables
+TEST_DB_PATH = 'data/ej2b3/ramen-ratings.db'
+TEST_TABLE_NAME = "ramen_ratings"
 
-def test_read_population_data():
-    url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
-    tables = read_population_data(url)
-    assert isinstance(tables, list)
-    assert all(isinstance(table, pd.DataFrame) for table in tables)
 
-def test_get_table_by_match():
-    url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
-    tables = read_population_data(url)
-    table = get_table_by_match(tables, "Spain")
-    assert isinstance(table, pd.DataFrame)
-    assert "Spain" in table.to_string()
+def test_read_sqlite_table():
+    df = read_sqlite_table(TEST_DB_PATH, TEST_TABLE_NAME)
+    assert isinstance(df, pd.DataFrame)
+    assert not df.empty
 
-def test_count_tables():
-    url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
-    tables = read_population_data(url)
-    count = count_tables(tables)
-    assert isinstance(count, int)
-    assert count > 0  # Asegura que haya al menos una tabla
+
+def test_execute_sqlite_query():
+    query = "SELECT * FROM ramen_ratings WHERE Stars >= 4"
+    df = execute_sqlite_query(TEST_DB_PATH, query)
+    df['Stars'] = pd.to_numeric(df['Stars'], errors='coerce')
+    df = df.dropna(subset=['Stars'])
+
+    assert isinstance(df, pd.DataFrame)
+    assert not df.empty
+    assert all(df['Stars'] >= 4)
