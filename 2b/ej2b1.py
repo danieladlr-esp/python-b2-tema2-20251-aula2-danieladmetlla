@@ -56,7 +56,7 @@ def read_csv_custom_separator(file_path: str, separator: str, decimal: str) -> p
 
 
 # Para probar el código, descomenta las siguientes líneas
-# basic_csv_path = 'data/ramen-ratings.csv'
+# basic_csv_path = 'data/ej2b1/ramen-ratings.csv'
 # header_issue_csv_path = 'data/ej2b1/ramen_ratings_with_header_issue.csv'
 # multi_index_csv_path = 'data/ej2b1/ramen_ratings_multi_index.csv'
 # semicolon_csv_path = 'data/ej2b1/ramen_ratings_decimal_comma.csv'
