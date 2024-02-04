@@ -6,12 +6,12 @@ de viviendas La tarea es completar la función para calcular el coeficiente de c
 determinar si existe una relación lineal entre las dos variables seleccionadas.
 
 La función a desarrollar es:
-    - Calcular el coeficiente de correlación de Pearson: calculate_pearson_correlation(file_path, var1, var2) que lee
+    - Calcular el coeficiente de correlación de Pearson: calculate_pearson_correlation(file_path, variable_1, var2) que lee
     un archivo CSV y calcula la correlación entre dos variables dadas.
 
 Parámetros:
     file_path (str): Ruta del archivo CSV que contiene los datos de vivienda.
-    var1 (str): Nombre de la primera variable para el cálculo de la correlación.
+    variable_1 (str): Nombre de la primera variable para el cálculo de la correlación.
     var2 (str): Nombre de la segunda variable para el cálculo de la correlación.
 
 La función debe devolver el valor del coeficiente de correlación de Pearson y el valor p asociado, permitiendo a los
@@ -42,12 +42,12 @@ def calculate_pearson_correlation(file_path: str, var1: str, var2: str) -> (floa
 
     return correlation, p_value
 
-# Para probar el código, reemplaza 'path_a_tu_archivo_housing.csv' con la ruta real al archivo CSV
-housing_csv_path = './data/housing.csv'
-variable_1 = 'MEDV'
-variable_2 = 'RM'
-correlation, p_value = calculate_pearson_correlation(housing_csv_path, variable_1, variable_2)
-
-# Mostrar el coeficiente de correlación de Pearson y el valor p
-print(f'Columnas comparadas: {variable_1} y {variable_2}')
-print(f'Correlación de Pearson: {correlation}, Valor p: {p_value}')
+# Para probar el código, descomenta las siguientes líneas
+# housing_csv_path = './data/housing.csv'
+# variable_1 = 'MEDV'
+# variable_2 = 'RM'
+# correlation, p_value = calculate_pearson_correlation(housing_csv_path, variable_1, variable_2)
+#
+# # Mostrar el coeficiente de correlación de Pearson y el valor p
+# print(f'Columnas comparadas: {variable_1} y {variable_2}')
+# print(f'Correlación de Pearson: {correlation}, Valor p: {p_value}')

@@ -49,7 +49,8 @@ def calculate_kurtosis(file_path: str) -> float:
     data = pd.read_csv(file_path)
     return stats.kurtosis(data['Calificaciones'])
 
-# Para probar el código, reemplaza 'path_a_tu_archivo_de_calificaciones.csv' con la ruta real al archivo CSV
+
+# Para probar el código, descomenta las siguientes líneas
 # calificaciones_csv_path = './data/calificaciones.csv'
 # mean = calculate_mean(calificaciones_csv_path)
 # variance = calculate_variance(calificaciones_csv_path)
