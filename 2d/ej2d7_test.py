@@ -25,5 +25,5 @@ def test_visualize_clusters(german_credit_data_path):
     data_scaled = prepare_data_for_clustering(german_credit_data_path)
     n_clusters = 5
     labels = perform_kmeans_clustering(data_scaled, n_clusters)
-    data_reduced, fig, ax = visualize_clusters(data_scaled, labels)
+    data_reduced, fig, ax = visualize_clusters(data_scaled, labels, True)
     assert data_reduced.shape[1] == 2, "The data should be reduced to 2 dimensions"

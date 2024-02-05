@@ -55,9 +55,9 @@ def evaluate_regression_model(model, X_test, y_test) -> Tuple[float, float]:
 
 
 # Para probar el código, debes descomentar las siguientes líneas:
-if __name__ == '__main__':
-    file_path = './data/housing.csv'
-    X_train, X_test, y_train, y_test = prepare_data_for_regression(file_path)
-    model = perform_random_forest_regression(X_train, y_train)
-    r_squared, rmse = evaluate_regression_model(model, X_test, y_test)
-    print(f'R^2 del modelo: {r_squared}, RMSE: {rmse}')
+# if __name__ == '__main__':
+#     file_path = './data/housing.csv'
+#     X_train, X_test, y_train, y_test = prepare_data_for_regression(file_path)
+#     model = perform_random_forest_regression(X_train, y_train)
+#     r_squared, rmse = evaluate_regression_model(model, X_test, y_test)
+#     print(f'R^2 del modelo: {r_squared}, RMSE: {rmse}')

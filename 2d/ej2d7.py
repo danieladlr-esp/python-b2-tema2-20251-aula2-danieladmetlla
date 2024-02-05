@@ -51,8 +51,8 @@ def perform_kmeans_clustering(data: np.ndarray, n_clusters: int) -> np.ndarray:
     return kmeans.labels_
 
 
-def visualize_clusters(data: np.ndarray, labels: np.ndarray) -> Tuple[np.ndarray, plt.Figure, plt.Axes]:
-    pca = PCA(n_components=2)  # Reducir a 2D para visualización
+def visualize_clusters(data: np.ndarray, labels: np.ndarray, is_testing_execution: bool = False) -> Tuple[np.ndarray, plt.Figure, plt.Axes]:
+    pca = PCA(n_components=2)
     data_reduced = pca.fit_transform(data)
     fig, ax = plt.subplots(figsize=(10, 7))
     scatter = ax.scatter(data_reduced[:, 0], data_reduced[:, 1], c=labels, cmap='viridis', marker='o', edgecolor='k', s=50, alpha=0.6)
@@ -60,13 +60,14 @@ def visualize_clusters(data: np.ndarray, labels: np.ndarray) -> Tuple[np.ndarray
     ax.set_xlabel('Componente principal 1')
     ax.set_ylabel('Componente principal 2')
     plt.colorbar(scatter, ax=ax)
-    # plt.show()  # Comentado para permitir pruebas unitarias
+    if not is_testing_execution:
+        plt.show()
     return data_reduced, fig, ax
 
 
 # Para probar el código, desconmenta las siguientes líneas
-if __name__ == '__main__':
-    file_path = './data/german_credit_data.csv'
-    data = prepare_data_for_clustering(file_path)
-    labels = perform_kmeans_clustering(data, 5)  # Asumiendo que queremos 5 clusters
-    data_reduced, fig, ax = visualize_clusters(data, labels)
+# if __name__ == '__main__':
+#     file_path = './data/german_credit_data.csv'
+#     data = prepare_data_for_clustering(file_path)
+#     labels = perform_kmeans_clustering(data, 5)
+#     data_reduced, fig, ax = visualize_clusters(data, labels, False)
