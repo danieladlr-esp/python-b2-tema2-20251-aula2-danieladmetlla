@@ -49,10 +49,10 @@ def evaluate_regression_model(model, X_test, y_test) -> Tuple[float, float]:
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == '__main__':
-    file_path = './data/housing.csv'
-    data = pd.read_csv(file_path, skiprows=14)
-    X_train, X_test, y_train, y_test = prepare_data_for_regression(data)
-    model = perform_linear_regression(X_train, y_train)
-    r_squared, rmse = evaluate_regression_model(model, X_test, y_test)
-    print(f'R^2 del modelo: {r_squared}, RMSE: {rmse}')
+# if __name__ == '__main__':
+#     file_path = './data/housing.csv'
+#     data = pd.read_csv(file_path, skiprows=14)
+#     X_train, X_test, y_train, y_test = prepare_data_for_regression(data)
+#     model = perform_linear_regression(X_train, y_train)
+#     r_squared, rmse = evaluate_regression_model(model, X_test, y_test)
+#     print(f'R^2 del modelo: {r_squared}, RMSE: {rmse}')
