@@ -10,17 +10,18 @@ Las funciones a desarrollar son:
    el clustering, realizando cualquier limpieza o preprocesamiento necesario.
 2. Realizar el clustering con KMeans: `perform_kmeans_clustering(data, n_clusters: int)` que aplica el algoritmo KMeans
    a los datos preparados, utilizando un número específico de clusters.
-3. Visualizar los resultados: `visualize_clusters(data, labels)` que visualiza los resultados del clustering, idealmente
-   utilizando una reducción de dimensionalidad para representar los datos en 2D o 3D si es posible.
+3. Visualizar los resultados: `visualize_clusters(data, labels, is_testing_execution)` que visualiza los resultados del
+   clustering, idealmente utilizando una reducción de dimensionalidad para representar los datos en 2D o 3D si es
+   posible.
 
 Parámetros:
     file_path (str): Ruta al archivo CSV que contiene los datos del dataset de crédito alemán.
     n_clusters (int): Número de clusters a utilizar en el análisis KMeans.
 
-Ejemplo de uso:
+Ejemplo:
     data = prepare_data_for_clustering('./data/german_credit_data.csv')
     labels = perform_kmeans_clustering(data, 5)
-    visualize_clusters(data, labels)
+    visualize_clusters(data, labels, is_testing_execution)
 
 Salida esperada:
     Una visualización de los clusters formados por el análisis KMeans, mostrando cómo se agrupan los solicitantes de
