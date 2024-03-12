@@ -76,20 +76,20 @@ def pairplot_graphic(
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    iris = load_iris()
-    df_iris = data_processing(
-        iris.data, iris.feature_names, iris.target, iris.target_names
-    )
+# if __name__ == "__main__":
+#     iris = load_iris()
+#     df_iris = data_processing(
+#         iris.data, iris.feature_names, iris.target, iris.target_names
+#     )
 
-    viz_params = {
-        "hue": "species",
-        "diag_kind": "kde",
-        "kind": "scatter",
-        "palette": "husl",
-        "corner": True,
-    }
-    columns_to_visualize = None
-    plot = pairplot_graphic(df_iris, columns=columns_to_visualize, **viz_params)
-    plt.show()
+#     viz_params = {
+#         "hue": "species",
+#         "diag_kind": "kde",
+#         "kind": "scatter",
+#         "palette": "husl",
+#         "corner": True,
+#     }
+#     columns_to_visualize = None
+#     plot = pairplot_graphic(df_iris, columns=columns_to_visualize, **viz_params)
+#     plt.show()
 

@@ -72,21 +72,21 @@ def df_to_excel() -> Tuple[pd.DataFrame, Dict[str, Any]]:
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    path_csv = current_dir / "data/sales.csv"
-    df_sales = pd.read_csv(path_csv)
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     path_csv = current_dir / "data/sales.csv"
+#     df_sales = pd.read_csv(path_csv)
 
-    df_from_json, used_params = df_to_json(
-        df_sales, current_dir / "data/df_to_json_sales.json"
-    )
-    df_from_csv, used_params_csv = df_to_csv(
-        df_sales, current_dir / "data/df_to_csv_sales.csv"
-    )
-    df_from_excel, used_params_excel = df_to_excel(
-        df_sales, current_dir / "data/sales.xlsx"
-    )
+#     df_from_json, used_params = df_to_json(
+#         df_sales, current_dir / "data/df_to_json_sales.json"
+#     )
+#     df_from_csv, used_params_csv = df_to_csv(
+#         df_sales, current_dir / "data/df_to_csv_sales.csv"
+#     )
+#     df_from_excel, used_params_excel = df_to_excel(
+#         df_sales, current_dir / "data/sales.xlsx"
+#     )
 
-    print(df_from_json.head())
-    print(df_from_csv.head())
-    print(df_from_excel.head())
+#     print(df_from_json.head())
+#     print(df_from_csv.head())
+#     print(df_from_excel.head())

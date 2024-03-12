@@ -103,18 +103,18 @@ def train_and_visualize(X, y):
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    iris = datasets.load_iris()
-    X = iris.data[:, :2]
-    y = iris.target
+# if __name__ == "__main__":
+#     iris = datasets.load_iris()
+#     X = iris.data[:, :2]
+#     y = iris.target
 
-    X_train, X_test, y_train, y_test, classifier = train_and_visualize(X, y)
+#     X_train, X_test, y_train, y_test, classifier = train_and_visualize(X, y)
 
-    fig, axs = plt.subplots(1, 2, figsize=(12, 5))
-    plot_decision_boundaries(axs[0], X_train, y_train, classifier)
-    plot_confusion_matrix(
-        axs[1], y_test, classifier.predict(X_test), classes=iris.target_names
-    )
+#     fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+#     plot_decision_boundaries(axs[0], X_train, y_train, classifier)
+#     plot_confusion_matrix(
+#         axs[1], y_test, classifier.predict(X_test), classes=iris.target_names
+#     )
 
-    plt.tight_layout()
-    plt.show()
+#     plt.tight_layout()
+#     plt.show()

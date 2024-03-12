@@ -93,15 +93,15 @@ def plot_scatter_graph():
     return fig, ax
 
 
-# # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    path_csv = current_dir / "data/iris_dataset.csv"
-    dataframe = pd.read_csv(path_csv)
-    fig, axs = plt.subplots(1, 2, figsize=(12, 6))
+# Para probar el código, descomenta las siguientes líneas
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     path_csv = current_dir / "data/iris_dataset.csv"
+#     dataframe = pd.read_csv(path_csv)
+#     fig, axs = plt.subplots(1, 2, figsize=(12, 6))
 
-    plot_area_graph(dataframe, "petal length (cm)", ax=axs[0])
-    plot_scatter_graph(dataframe, "sepal length (cm)", "sepal width (cm)", ax=axs[1])
+#     plot_area_graph(dataframe, "petal length (cm)", ax=axs[0])
+#     plot_scatter_graph(dataframe, "sepal length (cm)", "sepal width (cm)", ax=axs[1])
 
-    plt.tight_layout()
-    plt.show()
+#     plt.tight_layout()
+#     plt.show()

@@ -94,13 +94,13 @@ def compare_monthly_sales(
 
     return fig, ax1, ax2
 
-
-# Para probar el código, descomenta las siguientes líneas
 sales_2020 = np.random.randint(100, 500, 12)
 sales_2021 = np.random.randint(100, 500, 12)
 sales_2022 = np.random.randint(100, 500, 12)
 months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-if __name__ == "__main__":
-    fig, ax1, ax2 = compare_monthly_sales(sales_2020, sales_2021, sales_2022, months)
-    plt.show()
+
+# Para probar el código, descomenta las siguientes líneas
+# if __name__ == "__main__":
+#     fig, ax1, ax2 = compare_monthly_sales(sales_2020, sales_2021, sales_2022, months)
+#     plt.show()

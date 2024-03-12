@@ -88,22 +88,22 @@ def show_dataframe(nombre, df):
 
 
 # # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    FILE_PATH = current_dir / "data/products.csv"
-    df = read_csv_basic(FILE_PATH)
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     FILE_PATH = current_dir / "data/products.csv"
+#     df = read_csv_basic(FILE_PATH)
 
-    df_stacked = stack_dataframe(df)
-    show_dataframe("Stack", df_stacked)
+#     df_stacked = stack_dataframe(df)
+#     show_dataframe("Stack", df_stacked)
 
-    df_unstacked = unstack_dataframe(df_stacked)
-    show_dataframe("Unstack", df_unstacked)
+#     df_unstacked = unstack_dataframe(df_stacked)
+#     show_dataframe("Unstack", df_unstacked)
 
-    df_pivoted = pivot_dataframe(df)
-    show_dataframe("Pivot", df_pivoted)
+#     df_pivoted = pivot_dataframe(df)
+#     show_dataframe("Pivot", df_pivoted)
 
-    df_melted = melt_dataframe(df)
-    show_dataframe("Melt", df_melted)
+#     df_melted = melt_dataframe(df)
+#     show_dataframe("Melt", df_melted)
 
-    df_transposed = transpose_dataframe(df)
-    show_dataframe("Transpose", df_transposed)
+#     df_transposed = transpose_dataframe(df)
+#     show_dataframe("Transpose", df_transposed)

@@ -49,15 +49,15 @@ def read_excel_custom_sheet(file_path: str) -> pd.DataFrame:
 
 
 # Para probar el código, descomenta las siguientes líneas
-file_path = "data/ej2b4/ramen-ratings.xlsx"
-current_dir = Path(__file__).parent
-excel_file_path = current_dir / file_path
+# file_path = "data/ej2b4/ramen-ratings.xlsx"
+# current_dir = Path(__file__).parent
+# excel_file_path = current_dir / file_path
 
-df_from_sheet1 = read_excel_sheet(excel_file_path)
-df_from_sheet2 = read_excel_custom_sheet(excel_file_path)
+# df_from_sheet1 = read_excel_sheet(excel_file_path)
+# df_from_sheet2 = read_excel_custom_sheet(excel_file_path)
 
-# Mostrar la cantidad de registros y los nombres de las columnas
-print(f"Registros en la hoja 1: {len(df_from_sheet1)}")
-print(f"Nombres de columnas en la hoja 1: {df_from_sheet1.columns.tolist()}")
-print(f"Registros en la hoja 2: {len(df_from_sheet2)}")
-print(f"Nombres de columnas en la hoja 2: {df_from_sheet2.columns.tolist()}")
+# # Mostrar la cantidad de registros y los nombres de las columnas
+# print(f"Registros en la hoja 1: {len(df_from_sheet1)}")
+# print(f"Nombres de columnas en la hoja 1: {df_from_sheet1.columns.tolist()}")
+# print(f"Registros en la hoja 2: {len(df_from_sheet2)}")
+# print(f"Nombres de columnas en la hoja 2: {df_from_sheet2.columns.tolist()}")

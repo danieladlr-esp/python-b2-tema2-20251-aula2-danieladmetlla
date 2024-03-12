@@ -58,18 +58,18 @@ def select_rows_with_conditions(
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de tener un archivo CSV 'data/grades.csv'
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    FILE_PATH = current_dir / "data/grades.csv"
-    df_grades = pd.read_csv(FILE_PATH)
-    selected_columns_and_rows = select_rows_and_columns(
-        df_grades, ["Name", "Maths", "History"], rows=slice(5, 10)
-    )
-    selected_rows = select_rows_with_conditions(
-        df_grades, ["English > 50", "Maths >= 60", "Geography > 55"]
-    )
-    print("DataFrame Original:\n", df_grades.head())
-    print(
-        "DataFrame with Selected Columns and Rows:\n", selected_columns_and_rows.head()
-    )
-    print("DataFrame with Rows that Meet Conditions:\n", selected_rows.head())
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     FILE_PATH = current_dir / "data/grades.csv"
+#     df_grades = pd.read_csv(FILE_PATH)
+#     selected_columns_and_rows = select_rows_and_columns(
+#         df_grades, ["Name", "Maths", "History"], rows=slice(5, 10)
+#     )
+#     selected_rows = select_rows_with_conditions(
+#         df_grades, ["English > 50", "Maths >= 60", "Geography > 55"]
+#     )
+#     print("DataFrame Original:\n", df_grades.head())
+#     print(
+#         "DataFrame with Selected Columns and Rows:\n", selected_columns_and_rows.head()
+#     )
+#     print("DataFrame with Rows that Meet Conditions:\n", selected_rows.head())

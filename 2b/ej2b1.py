@@ -63,20 +63,20 @@ def read_csv_custom_separator(
 
 
 # Para probar el código, descomenta las siguientes líneas
-current_dir = Path(__file__).parent
-BASIC_CSV_PATH = current_dir / "data/ej2b1/ramen-ratings.csv"
-HEADER_ISSUE_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_with_header_issue.csv"
-MULTI_INDEX_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_multi_index.csv"
-SEMICOLON_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_decimal_comma.csv"
+# current_dir = Path(__file__).parent
+# BASIC_CSV_PATH = current_dir / "data/ej2b1/ramen-ratings.csv"
+# HEADER_ISSUE_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_with_header_issue.csv"
+# MULTI_INDEX_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_multi_index.csv"
+# SEMICOLON_CSV_PATH = current_dir / "data/ej2b1/ramen_ratings_decimal_comma.csv"
 
-df_basic = read_csv_basic(BASIC_CSV_PATH)
-df_header_issue = read_csv_header_issue(HEADER_ISSUE_CSV_PATH, header_row=3)
-df_multi_index = read_csv_multi_index(
-    MULTI_INDEX_CSV_PATH, index_cols=["Brand", "Style"]
-)
-df_semicolon = read_csv_custom_separator(SEMICOLON_CSV_PATH, separator=";", decimal=",")
+# df_basic = read_csv_basic(BASIC_CSV_PATH)
+# df_header_issue = read_csv_header_issue(HEADER_ISSUE_CSV_PATH, header_row=3)
+# df_multi_index = read_csv_multi_index(
+#     MULTI_INDEX_CSV_PATH, index_cols=["Brand", "Style"]
+# )
+# df_semicolon = read_csv_custom_separator(SEMICOLON_CSV_PATH, separator=";", decimal=",")
 
-# Mostrar los primeros registros de cada DataFrame
-print(
-    df_basic.head(), df_header_issue.head(), df_multi_index.head(), df_semicolon.head()
-)
+# # Mostrar los primeros registros de cada DataFrame
+# print(
+#     df_basic.head(), df_header_issue.head(), df_multi_index.head(), df_semicolon.head()
+# )

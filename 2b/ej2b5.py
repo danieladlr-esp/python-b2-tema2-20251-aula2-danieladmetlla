@@ -79,14 +79,14 @@ def count_tables(tables: t.List[pd.DataFrame]) -> int:
 
 
 # Para probar el código, descomenta las siguientes líneas
-url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
-tables = read_population_data(url)
-print(f"Número de tablas en la página: {count_tables(tables)}")
-selected_table = get_table_by_string_match(tables, "Spain")
+# url = "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
+# tables = read_population_data(url)
+# print(f"Número de tablas en la página: {count_tables(tables)}")
+# selected_table = get_table_by_string_match(tables, "Spain")
 
-if selected_table is not None:
-    print(f"Registros en la tabla: {len(selected_table)}")
-    print(f"Nombres de columnas: {selected_table.columns.tolist()}")
-    print(selected_table)
-else:
-    print("No se encontró la tabla con el texto proporcionado.")
+# if selected_table is not None:
+#     print(f"Registros en la tabla: {len(selected_table)}")
+#     print(f"Nombres de columnas: {selected_table.columns.tolist()}")
+#     print(selected_table)
+# else:
+#     print("No se encontró la tabla con el texto proporcionado.")

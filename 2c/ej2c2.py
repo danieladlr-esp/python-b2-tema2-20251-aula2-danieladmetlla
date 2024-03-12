@@ -61,13 +61,13 @@ def pandas_dataframe_describe(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    FILE_PATH = current_dir / "data/grades.csv"
-    dataframe = read_csv_basic(FILE_PATH)
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     FILE_PATH = current_dir / "data/grades.csv"
+#     dataframe = read_csv_basic(FILE_PATH)
 
-    print("Custom Describe of the DataFrame:")
-    print(custom_dataframe_describe(dataframe), end="\n\n")
+#     print("Custom Describe of the DataFrame:")
+#     print(custom_dataframe_describe(dataframe), end="\n\n")
 
-    print("Pandas Describe of the DataFrame:")
-    print(pandas_dataframe_describe(dataframe))
+#     print("Pandas Describe of the DataFrame:")
+#     print(pandas_dataframe_describe(dataframe))

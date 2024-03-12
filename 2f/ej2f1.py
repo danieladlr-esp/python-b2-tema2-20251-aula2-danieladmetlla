@@ -72,13 +72,13 @@ def load_and_display_figure() -> Figure:
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    wine = load_wine()
-    df_wine = pd.DataFrame(data=wine.data, columns=wine.feature_names)
-    df_wine["target"] = pd.Categorical.from_codes(wine.target, wine.target_names)
+# if __name__ == "__main__":
+#     wine = load_wine()
+#     df_wine = pd.DataFrame(data=wine.data, columns=wine.feature_names)
+#     df_wine["target"] = pd.Categorical.from_codes(wine.target, wine.target_names)
 
-    fig_histograms = create_histograms(df_wine, df_wine.columns[:6])
-    is_saved = save_img_pickle(fig_histograms, "data/histograms_wine.pickle")
-    print("Figure saved:", is_saved)
-    fig_loaded = load_and_display_figure("data/histograms_wine.pickle")
-    plt.show()
+#     fig_histograms = create_histograms(df_wine, df_wine.columns[:6])
+#     is_saved = save_img_pickle(fig_histograms, "data/histograms_wine.pickle")
+#     print("Figure saved:", is_saved)
+#     fig_loaded = load_and_display_figure("data/histograms_wine.pickle")
+#     plt.show()

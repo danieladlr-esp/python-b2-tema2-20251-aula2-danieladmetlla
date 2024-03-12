@@ -68,9 +68,9 @@ def plot_pca_results() -> tuple:
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    current_dir = Path(__file__).parent
-    FILE_PATH = current_dir / "data/housing.csv"
-    dataset = prepare_data_for_pca(FILE_PATH)
-    pca = perform_pca(dataset, 4)
-    _, _ = plot_pca_results(pca)
+# if __name__ == "__main__":
+#     current_dir = Path(__file__).parent
+#     FILE_PATH = current_dir / "data/housing.csv"
+#     dataset = prepare_data_for_pca(FILE_PATH)
+#     pca = perform_pca(dataset, 4)
+#     _, _ = plot_pca_results(pca)

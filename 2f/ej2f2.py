@@ -103,14 +103,14 @@ def plot_feature_importance(
 
 
 # Para probar el código, descomenta las siguientes líneas
-if __name__ == "__main__":
-    wine = load_wine()
-    X = wine.data
-    y = wine.target
+# if __name__ == "__main__":
+#     wine = load_wine()
+#     X = wine.data
+#     y = wine.target
 
-    model, X_test, y_test = train_model(X, y)
-    filename = "wine_model.pickle"
-    is_saved = save_model(model, filename)
-    print("Model saved:", is_saved)
-    fig = plot_feature_importance(model, wine.feature_names)
-    plt.show()
+#     model, X_test, y_test = train_model(X, y)
+#     filename = "wine_model.pickle"
+#     is_saved = save_model(model, filename)
+#     print("Model saved:", is_saved)
+#     fig = plot_feature_importance(model, wine.feature_names)
+#     plt.show()

@@ -47,16 +47,16 @@ def execute_sqlite_query(file_path: str, query: str) -> pd.DataFrame:
 
 
 # Para probar el código, descomenta las siguientes líneas
-db_path = "data/ej2b3/ramen-ratings.db"
-current_dir = Path(__file__).parent
-sqlite_db_path = current_dir / db_path
+# db_path = "data/ej2b3/ramen-ratings.db"
+# current_dir = Path(__file__).parent
+# sqlite_db_path = current_dir / db_path
 
 
-df_from_table = read_sqlite_table(sqlite_db_path, "ramen_ratings")
-df_from_query = execute_sqlite_query(
-    sqlite_db_path, "SELECT * FROM ramen_ratings WHERE Stars >= 4"
-)
+# df_from_table = read_sqlite_table(sqlite_db_path, "ramen_ratings")
+# df_from_query = execute_sqlite_query(
+#     sqlite_db_path, "SELECT * FROM ramen_ratings WHERE Stars >= 4"
+# )
 
-# Mostrar la cantidad de registros
-print(f"Registros en la tabla: {len(df_from_table)}")
-print(f"Registros en la consulta: {len(df_from_query)}")
+# # Mostrar la cantidad de registros
+# print(f"Registros en la tabla: {len(df_from_table)}")
+# print(f"Registros en la consulta: {len(df_from_query)}")
