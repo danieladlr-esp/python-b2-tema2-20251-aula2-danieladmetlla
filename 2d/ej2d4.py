@@ -11,6 +11,12 @@ y objetivo (y), y realiza un split de entrenamiento y prueba con una proporción
 2. Realizar la clasificación con SVM: `perform_svm_classification(X_train, y_train, X_test, y_test)` que entrena un
 modelo SVM con los datos de entrenamiento y evalúa su rendimiento con los datos de prueba, devolviendo las métricas
 de precisión y un reporte de clasificación.
+3. Entrenar el clasificador SVM: train_svm_classifier(X_train, y_train) toma las características y las etiquetas de
+entrenamiento como entradas, entrena un clasificador de vectores de soporte (SVM) usando un kernel lineal, y devuelve
+el clasificador entrenado.
+4. Predecir especies: predict_species(clf, features, feature_names) recibe un clasificador SVM entrenado, un conjunto
+de características numéricas y sus nombres correspondientes. Crea un DataFrame con estas características, realiza una
+predicción usando el clasificador, y devuelve el nombre de la especie predicha basándose en el índice de la predicción.
 
 Parámetros:
     file_path (str): Ruta al archivo CSV que contiene los datos del dataset Iris.
