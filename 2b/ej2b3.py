@@ -34,16 +34,13 @@ from pathlib import Path
 
 
 def read_sqlite_table(file_path: str, table_name: str) -> pd.DataFrame:
-    with sqlite3.connect(file_path) as conn:
-        query = 
-        dataframe = pd.
-    return dataframe
+    # Write here your code
+    pass
 
 
 def execute_sqlite_query(file_path: str, query: str) -> pd.DataFrame:
-    with sqlite3.connect() as conn:
-        dataframe = pd.
-    return dataframe
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

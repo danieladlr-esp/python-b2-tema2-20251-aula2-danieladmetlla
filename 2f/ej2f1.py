@@ -49,26 +49,19 @@ from matplotlib.figure import Figure
 from pandas.core.frame import DataFrame
 
 
-def create_histograms() -> Figure:
-    fig, axs = plt.subplots(2, 3, figsize=(15, 10))
-    for i, feature in (features):
-        ax = axs[i // 3, i % 3]
-        sns.(df, x=feature, hue="target", ax=ax, kde=True)
-    plt.tight_layout()
-    return fig
+def create_histograms(df: DataFrame, features: List[str]) -> Figure:
+    # Write here your code
+    pass
 
 
-def save_img_pickle() -> None:
-    with (filename, "wb") as f:
-        .dump(fig, f)
-    plt.close(fig)
-    return True
+def save_img_pickle(fig: Figure, filename: str) -> None:
+    # Write here your code
+    pass
 
 
-def load_and_display_figure() -> Figure:
-    with (filename, "rb") as f:
-        fig = .load(f)
-    return fig
+def load_and_display_figure(filename: str) -> Figure:
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

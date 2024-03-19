@@ -34,45 +34,15 @@ import typing as t
 
 
 def linear_regression_and_interpolation(
-    : t., : t.
-) -> t.[str, t.Any]:
-    slope, intercept = np.polyfit(data_x, data_y, 1)
-     = {}
-
-    interpolator = (data_x, data_y)
-     = ()
-
-    return {
-        "linear_regression": linear_regression,
-        "interpolated_data": interpolated_data,
-    }
+    data_x: t.List[float], data_y: t.List[float]
+) -> t.Dict[str, t.Any]:
+    # Write here your code
+    pass
 
 
-def plot_results():
-    plt.figure(figsize=(10, 6))
-    plt.scatter(data_x, data_y, label="Datos Originales", color="blue")
-
-    plt.plot(
-        data_x,
-        results["linear_regression"]["slope"] * data_x
-        + results["linear_regression"]["intercept"],
-        label="Regresión Lineal",
-        color="red",
-    )
-
-    plt.plot(
-        data_x,
-        results["interpolated_data"],
-        label="Interpolación",
-        color="green",
-        linestyle="--",
-    )
-
-    plt.xlabel("Eje X")
-    plt.ylabel("Eje Y")
-    plt.title("Regresión Lineal e Interpolación de Datos")
-    plt.legend()
-    plt.show()
+def plot_results(data_x: t.List[float], data_y: t.List[float], results: t.Dict):
+    # Write here your code
+    pass
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script

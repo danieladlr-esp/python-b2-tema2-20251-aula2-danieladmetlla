@@ -35,24 +35,24 @@ import pandas as pd
 from scipy import stats
 
 
-def calculate_mean() -> float:
-    data = (file_path)
-    return data["Calificaciones"].()
+def calculate_mean(file_path: str) -> float:
+    # Write here your code
+    pass
 
 
-def calculate_variance() -> float:
-    data = (file_path)
-    return data["Calificaciones"].()
+def calculate_mean(file_path: str) -> float:
+    # Write here your code
+    pass
 
 
-def calculate_skewness() -> float:
-    data = (file_path)
-    return stats.(data["Calificaciones"])
+def calculate_skewness(file_path: str) -> float:
+    # Write here your code
+    pass
 
 
-def calculate_kurtosis() -> float:
-    data = (file_path)
-    return stats.(data["Calificaciones"])
+def calculate_kurtosis(file_path: str) -> float:
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

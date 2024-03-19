@@ -60,46 +60,24 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
-def create_meshgrid():
-    x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-    xx1, xx2 = np.(
-        np.arange(x1_min, x1_max, ), np.arange(x2_min, x2_max, )
-    )
-    return xx1, xx2
+def create_meshgrid(X, resolution=0.02):
+    # Write here your code
+    pass
 
 
-def plot_decision_boundaries():
-    xx1, xx2 = create_meshgrid(X, )
-    Z = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
-    Z = Z.reshape(xx1.shape)
-
-    ax.contourf(xx1, xx2, Z, alpha=0.4, cmap="viridis")
-
-    ax.scatter(X[:, 0], X[:, 1], c=y, cmap="viridis", edgecolor="k", s=20)
-    ax.set_xlabel("Feature 1")
-    ax.set_ylabel("Feature 2")
-    return ax
+def plot_decision_boundaries(ax, X, y, classifier, resolution=0.02):
+    # Write here your code
+    pass
 
 
-def plot_confusion_matrix():
-    cm = confusion_matrix(y_true, y_pred)
-    disp = (confusion_matrix=cm, display_labels=classes)
-    disp.plot(ax=ax)
-    ax.set_title("Confusion Matrix")
-    return ax
+def plot_confusion_matrix(ax, y_true, y_pred, classes):
+    # Write here your code
+    pass
 
 
 def train_and_visualize(X, y):
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=1
-    )
-    classifier = (
-        n_neighbors=3, weights="", metric=""
-    )
-    classifier.fit(X_train, y_train)
-
-    return X_train, X_test, y_train, y_test, classifier
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

@@ -46,35 +46,24 @@ import pandas as pd
 import numpy as np
 
 
-def read_csv():
-    df = pd.read_csv()
-    return df
+def read_csv(filepath):
+    # Write here your code
+    pass
 
 
 def clean_dataframe(df):
-    df.replace(["Null", "-", "NA", "na", ""], , inplace=True)
-    df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x).(
-        "", np.nan
-    )
-
-    for col in df.columns[]:
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df
+    # Write here your code
+    pass
 
 
-def dropna_specific_row_in_column():
-    return df.dropna(subset=[column_name])
+def dropna_specific_row_in_column(df, column_name):
+    # Write here your code
+    pass
 
 
-def fillna_method():
-    if  == "ffill":
-        df[column_name] = df[column_name].ffill(limit=limit)
-    elif  == "mean":
-        mean_value = fill_value if fill_value is not None else df[column_name].mean()
-        df[column_name] = df[column_name].fillna(mean_value)
-    else:
-        raise ValueError("fill_method debe ser 'ffill' o 'mean'")
-    return df
+def fillna_method(df, column_name, fill_method="ffill", fill_value=None, limit=1):
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de que el path al archivo sea correcto

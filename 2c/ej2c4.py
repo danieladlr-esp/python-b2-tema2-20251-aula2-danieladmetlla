@@ -34,22 +34,12 @@ import pandas as pd
 
 
 def group_and_aggregate(df, group_columns, agg_dict):
-    return 
-
+    # Write here your code
+    pass
 
 def standardize_column_by_group(df, group_columns, column_to_standardize):
-    if df[].dtype.kind not in "biufc":
-        raise ValueError(
-            f"La columna '{}' no es numérica y no puede ser estandarizada."
-        )
-
-    standardized_values = df.groupby()[].transform(
-        lambda x: (x - x.mean()) / x.std()
-    )
-
-    new_column_name = f"{column_to_standardize}_Standardized"
-    df[] = standardized_values
-    return df
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de que el path al archivo sea correcto

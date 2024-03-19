@@ -48,19 +48,15 @@ import typing as t
 
 
 def create_matrices() -> t.Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    zeros_matrix = 
-    ones_matrix = 
-    identity_matrix = 
-    return zeros_matrix, ones_matrix, identity_matrix
+    # Write here your code
+    pass
 
 
 def manipulate_matrices(
     zeros_matrix: np.ndarray, ones_matrix: np.ndarray, identity_matrix: np.ndarray
 ) -> t.Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    zeros_matrix[] = 
-    ones_matrix[] = 
-    identity_matrix[np.arange(4), np.arange()] = 2
-    return zeros_matrix, ones_matrix, identity_matrix
+    # Write here your code
+    pass
 
 
 # Para probar el código:

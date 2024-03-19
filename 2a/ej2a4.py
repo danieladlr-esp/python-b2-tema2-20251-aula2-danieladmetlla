@@ -55,52 +55,17 @@ import typing as t
 def compare_monthly_sales(
     sales_year1: list, sales_year2: list, sales_year3: list, months: list
 ) -> t.Tuple[plt.Figure, plt.Axes, plt.Axes]:
-    x = np.arange(len(months)) 
-    width = 0.35 
-
-
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
-
-
-    bars1 = ax1.bar(x - width / 2, sales_year1, width, label="2020")
-    bars2 = ax1.bar(x + width / 2, sales_year2, width, label="2021")
-
-
-    ax1.("Months")
-    ax1.("Sales")
-    ax1.("Monthly Sales Comparison: 2020 vs 2021")
-    ax1.(x)
-    ax1.(months)
-    ax1.legend()
-
-
-    cumulative_sales_2020 = np.(sales_year1)
-    cumulative_sales_2021 = np.(sales_year2)
-    ax1_twin = ax1.twinx() 
-    ax1_twin.plot(months, , label="Cumulative 2020", color="blue", marker="o")
-    ax1_twin.plot(
-        months,
-        ,
-        label="Cumulative 2021",
-        color="green",
-        marker="x",
-    )
-    ax1_twin.("Cumulative Sales")
-    ax1_twin.legend(loc="upper left")
-
-
-    ax2.pie(sales_year3, labels=months, autopct="%1.1f%%", startangle=90)
-    ax2.("2022 Monthly Sales Distribution")
-
-    return fig, ax1, ax2
-
-sales_2020 = np.random.randint(100, 500, 12)
-sales_2021 = np.random.randint(100, 500, 12)
-sales_2022 = np.random.randint(100, 500, 12)
-months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas
+# sales_2020 = np.random.randint(100, 500, 12)
+# sales_2021 = np.random.randint(100, 500, 12)
+# sales_2022 = np.random.randint(100, 500, 12)
+# months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
 # if __name__ == "__main__":
 #     fig, ax1, ax2 = compare_monthly_sales(sales_2020, sales_2021, sales_2022, months)
 #     plt.show()

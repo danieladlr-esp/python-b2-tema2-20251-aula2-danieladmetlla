@@ -38,44 +38,21 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
 
-def prepare_data_for_clustering() -> pd.DataFrame:
-    data = pd.read_csv(file_path)
-    data = data.select_dtypes(include=[np.number])
-    data = data.dropna()
-    scaler = StandardScaler()
-    data_scaled = scaler.fit_transform(data)
-    return data_scaled
+def prepare_data_for_clustering(file_path: str) -> pd.DataFrame:
+    # Write here your code
+    pass
 
 
-def perform_kmeans_clustering() -> np.ndarray:
-    kmeans = (n_clusters=n_clusters, n_init=10, random_state=42)
-    kmeans.(data)
-    return .labels_
+def perform_kmeans_clustering(data: np.ndarray, n_clusters: int) -> np.ndarray:
+    # Write here your code
+    pass
 
 
 def visualize_clusters(
     data: np.ndarray, labels: np.ndarray, is_testing_execution: bool = False
 ) -> Tuple[np.ndarray, plt.Figure, plt.Axes]:
-    pca = (n_components=2)
-    data_reduced = .fit_transform(data)
-    fig, ax = plt.subplots(figsize=(10, 7))
-    scatter = ax.scatter(
-        [:, 0],
-        [:, 1],
-        c=labels,
-        cmap="viridis",
-        marker="o",
-        edgecolor="k",
-        s=50,
-        alpha=0.6,
-    )
-    ax.set_title("Clusters formados por KMeans")
-    ax.set_xlabel("Componente principal 1")
-    ax.set_ylabel("Componente principal 2")
-    plt.colorbar(scatter, ax=ax)
-    if not is_testing_execution:
-        plt.show()
-    return data_reduced, fig, ax
+    # Write here your code
+    pass
 
 
 # Para probar el código, desconmenta las siguientes líneas

@@ -42,22 +42,18 @@ import numpy as np
 
 
 def read_csv_basic(file_path: str) -> pd.DataFrame:
-    return pd.read_csv(file_path)
+    # Write here your code
+    pass
 
 
 def custom_dataframe_describe(df: pd.DataFrame) -> pd.DataFrame:
-    df_numeric = df.select_dtypes(include=[])
-    descriptions = pd.DataFrame(
-        {
-            "count": df_numeric.count(),
-            ,
-        }
-    )
-    return descriptions.T
+    # Write here your code
+    pass
 
 
 def pandas_dataframe_describe(df: pd.DataFrame) -> pd.DataFrame:
-    return df.describe()
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

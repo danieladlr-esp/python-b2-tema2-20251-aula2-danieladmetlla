@@ -37,13 +37,10 @@ from scipy import stats
 
 
 def calculate_pearson_correlation(
-    
+    file_path: str, var1: str, var2: str
 ) -> (float, float):
-    data = pd.read_csv(file_path, =)
-    # Calcular el coeficiente de correlación de Pearson y el valor p
-    correlation, p_value = .(data[], data[])
-
-    return correlation, p_value
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

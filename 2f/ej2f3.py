@@ -45,30 +45,19 @@ import pandas as pd
 from typing import Tuple, Dict, Any
 
 
-def df_to_json(]:
-    params = {}
-    df.(filename, **)
-    loaded_df = pd.read_json(filename, lines=params["lines"], orient=params["orient"])
-    return loaded_df, params
+def df_to_json(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    # Write here your code
+    pass
 
 
-def df_to_csv() -> Tuple[pd.DataFrame, Dict[str, Any]]:
-    params = {}
-    df.(filename, **)
-    loaded_df = pd.read_csv(
-        filename,
-        sep=params["sep"],
-        header=params["header"],
-        encoding=params["encoding"],
-    )
-    return loaded_df, params
+def df_to_csv(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    # Write here your code
+    pass
 
 
-def df_to_excel() -> Tuple[pd.DataFrame, Dict[str, Any]]:
-    params = {}
-    df.(filename, **)
-    loaded_df = pd.read_excel(filename, sheet_name=params["sheet_name"])
-    return loaded_df, params
+def df_to_excel(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

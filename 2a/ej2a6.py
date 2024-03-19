@@ -37,37 +37,21 @@ import typing as t
 
 
 def gaussian(x: float, amplitude: float, mean: float, stddev: float) -> float:
-    return  * np.exp(-(() ** 2 / (2 * **2)))
-
+    # Write here your code
+    pass
 
 def gaussian_fit_and_integration(
-    data_x: t.List[], data_y: t.List[]
-) -> t.Tuple[t.Tuple[], ]:
-    params, _ = (gaussian, data_x, data_y, p0=[1, 0, 1])
-
-    integral, _ = (
-        lambda x: gaussian(x, *params), min(data_x), max(data_x)
-    )
-
-    return params, integral
+    data_x: t.List[float], data_y: t.List[float]
+) -> t.Tuple[t.Tuple[float], float]:
+    # Write here your code
+    pass
 
 
 def plot_gaussian_fit(
-    
+    data_x: t.List[float], data_y: t.List[float], gaussian_params: t.Tuple[float]
 ):
-    plt.figure(figsize=(10, 6))
-    plt.scatter(data_x, data_y, label="Datos Originales", color="blue")
-    plt.plot(
-        data_x,
-        gaussian(data_x, *gaussian_params),
-        label="Ajuste Gaussiano",
-        color="red",
-    )
-    plt.xlabel("Eje X")
-    plt.ylabel("Eje Y")
-    plt.title("Ajuste de Curva Gaussiana y Datos Originales")
-    plt.legend()
-    plt.show()
+    # Write here your code
+    pass
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script

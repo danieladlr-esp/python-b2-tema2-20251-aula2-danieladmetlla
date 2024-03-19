@@ -45,34 +45,16 @@ from sklearn.datasets import load_iris
 
 
 def data_processing(
-    data: np.ndarray,
-    : List[str],
-    : Optional[np.ndarray] = None,
-    : Optional[List[str]] = None,
-    : str = "species"
-) -> pd.DataFrame:
-    
-    df = pd.DataFrame(data=data, columns=feature_names)
-    if target is not None and target_names is not None:
-        df[target_feature_name] = pd..from_codes(target, target_names)
-    return df
+    data, feature_names, target=None, target_names=None, target_feature_name="species"
+):
+    # Write here your code
+    pass
 
 
-def pairplot_graphic(
-    df: pd.DataFrame,
-    : Optional[List[str]] = None,
-    : Dict[str, str]
-) -> sns.PairGrid:
-    
-    if columns is not None:
-        df_subset = (
-            df[columns + [viz_params.get("hue")]]
-            if viz_params.("hue") in df
-            else df[columns]
-        )
-    else:
-        df_subset = df
-    return .pairplot(df_subset, **viz_params)
+def pairplot_graphic( df: pd.DataFrame, columns: Optional[List[str]] = None, 
+                     **viz_params: Dict[str, str]) -> sns.PairGrid:
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

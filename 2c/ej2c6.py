@@ -34,37 +34,19 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
 
-def prepare_data_for_pca() -> pd.DataFrame:
-    data = pd.read_csv(file_path, =)
-     = data.drop("MEDV", axis=1, errors="ignore")
-    return features
+def prepare_data_for_pca(file_path: str) -> pd.DataFrame:
+    # Write here your code
+    pass
 
 
-def perform_pca() -> PCA:
-    scaler = ()
-    data_scaled = scaler.fit_transform(data)
-    pca = PCA(n_components=)
-    pca.(data_scaled)
-    return pca
+def perform_pca(data: pd.DataFrame, n_components: int) -> PCA:
+    # Write here your code
+    pass
 
 
-def plot_pca_results() -> tuple:
-    plt.figure(figsize=(10, 7))
-    explained_variance_ratio = .explained_variance_ratio_
-    cumulative_explained_variance = explained_variance_ratio.()
-    plt.bar(
-        range(1, pca.n_components_ + 1),
-        explained_variance_ratio,
-        alpha=0.5,
-        align="center",
-    )
-    plt.step(
-        range(1, pca.n_components_ + 1), cumulative_explained_variance, where="mid"
-    )
-    plt.ylabel("Varianza explicada")
-    plt.xlabel("Componentes principales")
-    plt.show()
-    return explained_variance_ratio, cumulative_explained_variance
+def plot_pca_results(pca: PCA) -> tuple:
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas

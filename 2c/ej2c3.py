@@ -48,43 +48,38 @@ import pandas as pd
 
 
 def read_csv_basic(file_path):
-    return pd.read_csv(file_path)
+    # Write here your code
+    pass
 
 
 def stack_dataframe(df):
-     = df.(
-        ["Product ID", "Product Name", "Brand", "Category"]
-    ).()
-    return df_stacked
+    # Write here your code
+    pass
 
 
 def unstack_dataframe(df_stacked):
-    return df_stacked.()
+    # Write here your code
+    pass
 
 
 def pivot_dataframe(df):
-    return df.(index="Product ID", columns="Category", values="Price")
+    # Write here your code
+    pass
 
 
 def melt_dataframe(df):
-    df_melted = pd.(
-        df,
-        id_vars=["Product ID", "Product Name", "Brand", "Category", "Color", "Size"],
-        value_vars=["Price", "Rating"],
-        var_name="Variable",
-        value_name="Value",
-    )
-    return df_melted
+    # Write here your code
+    pass
 
 
 def transpose_dataframe(df):
-    return df.()
+    # Write here your code
+    pass
 
 
 def show_dataframe(nombre, df):
-    print(f"{nombre}:")
-    print(df.head())
-    print()
+    # Write here your code
+    pass
 
 
 # # Para probar el código, descomenta las siguientes líneas

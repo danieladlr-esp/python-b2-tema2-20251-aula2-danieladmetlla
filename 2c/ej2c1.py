@@ -36,25 +36,17 @@ import pandas as pd
 
 
 def select_rows_and_columns(
-    
+    df: pd.DataFrame, columns: Union[List[str], List[int]], rows: Optional[slice] = None
 ) -> pd.DataFrame:
-    if rows is None:
-        rows = slice(None)
-
-    if isinstance(, int):
-        return df.iloc[rows, ]
-    else:
-        return df.loc[rows, ]
+    # Write here your code
+    pass
 
 
 def select_rows_with_conditions(
-        
+    df: pd.DataFrame, conditions: Union[str, List[str]]
 ) -> pd.DataFrame:
-    if isinstance(, list):
-        query_string = "  ".join()
-    else:
-        query_string = 
-    return df.query()
+    # Write here your code
+    pass
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de tener un archivo CSV 'data/grades.csv'

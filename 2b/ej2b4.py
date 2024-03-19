@@ -30,22 +30,15 @@ from pathlib import Path
 
 
 def read_excel_sheet(file_path: str) -> pd.DataFrame:
-    dataframe = pd.read_excel()
-    return 
+    # Write here your code
+    pass 
 
 
 
 def read_excel_custom_sheet(file_path: str) -> pd.DataFrame:
     def is_not_empty_column(col):
-        return col.
-
-    dataframe = pd.read_excel()
-    cols_to_use = [
-        col for col in dataframe.columns if is_not_empty_column()
-    ]
-    dataframe = dataframe[cols_to_use]
-
-    return dataframe
+        # Write here your code
+        pass
 
 
 # Para probar el código, descomenta las siguientes líneas
