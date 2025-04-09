@@ -1,4 +1,5 @@
 import pytest
+import numpy as np
 from pathlib import Path
 from ej2d7 import (
     prepare_data_for_clustering,
@@ -15,13 +16,20 @@ def german_credit_data_path():
 
 
 def test_prepare_data_for_clustering(german_credit_data_path):
-    data_scaled = prepare_data_for_clustering(german_credit_data_path)
-    assert data_scaled.mean(axis=0).all() == pytest.approx(
-        0, abs=1e-6
-    ), "The data should be centered around 0"
-    assert data_scaled.std(axis=0).all() == pytest.approx(
-        1, abs=1e-6
-    ), "The data should have a standard deviation of 1"
+    data_scaled = prepare_data_for_clustering(german_credit_data_path)        
+    std_mean = data_scaled.mean(axis=0)   
+    
+    expected_value = 0
+    tolerance = 1e-6
+    assert np.all(np.abs(std_mean - expected_value) <= tolerance), \
+               "The data should be centered around 0"
+    
+    std_values = data_scaled.std(axis=0)   
+    
+    expected_value = 1.0
+    tolerance = 1e-6
+    assert np.all(np.abs(std_values - expected_value) <= tolerance), \
+               "The data should have a standard deviation of 1"
 
 
 def test_perform_kmeans_clustering(german_credit_data_path):
