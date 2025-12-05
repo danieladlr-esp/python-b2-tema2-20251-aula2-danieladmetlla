@@ -43,27 +43,52 @@ import numpy as np
 
 def read_csv_basic(file_path: str) -> pd.DataFrame:
     # Write here your code
-    pass
+    return pd.read_csv(file_path)
 
 
 def custom_dataframe_describe(df: pd.DataFrame) -> pd.DataFrame:
     # Write here your code
-    pass
+    result = {}
+    dictionary = df.to_dict()
+
+    for column in dictionary:
+        if column != "Name":
+            result[column] = {}
+            sum = 0
+            length = 0
+            median_list = []
+            for row in dictionary[column]:
+                sum += dictionary[column][row]
+                length += 1
+                median_list.append(dictionary[column][row])
+                
+            median_list.sort()
+            result[column]["count"] = length
+            result[column]["mean"] = sum / length
+            result[column]["median"] = median_list[round(length / 2) - 1]
+            result[column]["std"] = np.std(median_list)
+            result[column]["min"] = median_list[0]
+            result[column]["25%"] = median_list[round(length / 4) - 1]
+            result[column]["50%"] = median_list[round(length / 2) - 1]
+            result[column]["75%"] = median_list[length - round(length / 4) - 1]
+            result[column]["max"] = median_list[length - 1]
+            
+    return pd.DataFrame(result)
 
 
 def pandas_dataframe_describe(df: pd.DataFrame) -> pd.DataFrame:
     # Write here your code
-    pass
+    return df.describe()
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     FILE_PATH = current_dir / "data/grades.csv"
-#     dataframe = read_csv_basic(FILE_PATH)
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    FILE_PATH = current_dir / "data/grades.csv"
+    dataframe = read_csv_basic(FILE_PATH)
 
-#     print("Custom Describe of the DataFrame:")
-#     print(custom_dataframe_describe(dataframe), end="\n\n")
+    print("Custom Describe of the DataFrame:")
+    print(custom_dataframe_describe(dataframe), end="\n\n")
 
-#     print("Pandas Describe of the DataFrame:")
-#     print(pandas_dataframe_describe(dataframe))
+    print("Pandas Describe of the DataFrame:")
+    print(pandas_dataframe_describe(dataframe))

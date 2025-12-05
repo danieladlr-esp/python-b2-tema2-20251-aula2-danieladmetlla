@@ -38,25 +38,30 @@ import typing as t
 
 def gaussian(x: float, amplitude: float, mean: float, stddev: float) -> float:
     # Write here your code
-    pass
+    return amplitude * np.exp(-((x - mean) ** 2 / (2 * stddev**2)))
 
 def gaussian_fit_and_integration(
     data_x: t.List[float], data_y: t.List[float]
 ) -> t.Tuple[t.Tuple[float], float]:
     # Write here your code
-    pass
+    curve_fit, _ = optimize.curve_fit(gaussian, data_x, data_y)
+
+    integration, _ = integrate.quad(lambda x: gaussian(x, *curve_fit), min(data_x), max(data_x))
+    return curve_fit, integration
 
 
 def plot_gaussian_fit(
     data_x: t.List[float], data_y: t.List[float], gaussian_params: t.Tuple[float]
 ):
     # Write here your code
-    pass
+    plt.figure()
+    plt.plot(data_x, gaussian(data_x, *gaussian_params))
+    plt.show()
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
-# data_x = np.linspace(-5, 5, 100)
-# data_y = 3 * np.exp(-(data_x - 1) ** 2 / (2 * 1.5 ** 2)) + np.random.normal(0, 0.2, 100)
-# gaussian_params, integral = gaussian_fit_and_integration(data_x, data_y)
-# print("Integral de la curva gaussiana ajustada:", integral)
-# plot_gaussian_fit(data_x, data_y, gaussian_params)
+data_x = np.linspace(-5, 5, 100)
+data_y = 3 * np.exp(-(data_x - 1) ** 2 / (2 * 1.5 ** 2)) + np.random.normal(0, 0.2, 100)
+gaussian_params, integral = gaussian_fit_and_integration(data_x, data_y)
+print("Integral de la curva gaussiana ajustada:", integral)
+plot_gaussian_fit(data_x, data_y, gaussian_params)
