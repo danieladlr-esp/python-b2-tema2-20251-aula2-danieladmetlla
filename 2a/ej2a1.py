@@ -25,9 +25,18 @@ import numpy as np
 
 def simulate_dice_rolls(number: int) -> dict:
     # Write here your code
-    pass
+    dice_rolls = np.random.randint(1, 7, number)
+
+    result = {np.int64(1) : 0, np.int64(2) : 0, np.int64(3) : 0, np.int64(4) : 0, np.int64(5) : 0, np.int64(6) : 0}
+
+    uniques, counts = np.unique(dice_rolls, return_counts = True)
+    percentages = dict(zip(uniques, counts / len(dice_rolls)))
+
+    for percentage in percentages:
+        result[percentage] = percentages[percentage]
+    return result
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
-# num_rolls = 10000
-# print(simulate_dice_rolls(num_rolls))
+num_rolls = 10000
+print(simulate_dice_rolls(num_rolls))

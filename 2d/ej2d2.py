@@ -36,21 +36,23 @@ import pandas as pd
 from scipy import stats
 
 
-def calculate_pearson_correlation(
-    file_path: str, var1: str, var2: str
-) -> (float, float):
+def calculate_pearson_correlation(file_path: str, var1: str, var2: str) -> tuple[float, float]:
     # Write here your code
-    pass
+    df = pd.read_csv(file_path, skiprows=14)
+    column1 = df[var1]
+    column2 = df[var2]
+    
+    return stats.pearsonr(column1, column2)
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     HOUSING_CSV_PATH = current_dir / 'data/housing.csv'
-#     variable_1 = 'MEDV'
-#     variable_2 = 'RM'
-#     correlation, p_value = calculate_pearson_correlation(HOUSING_CSV_PATH, variable_1, variable_2)
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    HOUSING_CSV_PATH = current_dir / 'data/housing.csv'
+    variable_1 = 'MEDV'
+    variable_2 = 'RM'
+    correlation, p_value = calculate_pearson_correlation(HOUSING_CSV_PATH, variable_1, variable_2)
 
-#     # Mostrar el coeficiente de correlación de Pearson y el valor p
-#     print(f'Columnas comparadas: {variable_1} y {variable_2}')
-#     print(f'Correlación de Pearson: {correlation}, Valor p: {p_value}')
+    # Mostrar el coeficiente de correlación de Pearson y el valor p
+    print(f'Columnas comparadas: {variable_1} y {variable_2}')
+    print(f'Correlación de Pearson: {correlation}, Valor p: {p_value}')

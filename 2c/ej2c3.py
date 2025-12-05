@@ -49,56 +49,57 @@ import pandas as pd
 
 def read_csv_basic(file_path):
     # Write here your code
-    pass
+    return pd.read_csv(file_path)
 
 
-def stack_dataframe(df):
+def stack_dataframe(df: pd.DataFrame):
     # Write here your code
-    pass
+    return df.stack()
 
 
-def unstack_dataframe(df_stacked):
+def unstack_dataframe(df_stacked: pd.DataFrame):
     # Write here your code
-    pass
+    return df_stacked.unstack()
 
 
-def pivot_dataframe(df):
+def pivot_dataframe(df: pd.DataFrame):
     # Write here your code
-    pass
+    return df.pivot(columns=["Product ID", "Category", "Price"])
 
 
-def melt_dataframe(df):
+def melt_dataframe(df: pd.DataFrame):
     # Write here your code
-    pass
+    return df.melt()
 
 
-def transpose_dataframe(df):
+def transpose_dataframe(df: pd.DataFrame):
     # Write here your code
-    pass
+    return df.transpose()
 
 
 def show_dataframe(nombre, df):
     # Write here your code
+    print(df)
     pass
 
 
-# # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     FILE_PATH = current_dir / "data/products.csv"
-#     df = read_csv_basic(FILE_PATH)
+# Para probar el código, descomenta las siguientes líneas
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    FILE_PATH = current_dir / "data/products.csv"
+    df = read_csv_basic(FILE_PATH)
 
-#     df_stacked = stack_dataframe(df)
-#     show_dataframe("Stack", df_stacked)
+    df_stacked = stack_dataframe(df)
+    show_dataframe("Stack", df_stacked)
 
-#     df_unstacked = unstack_dataframe(df_stacked)
-#     show_dataframe("Unstack", df_unstacked)
+    df_unstacked = unstack_dataframe(df_stacked)
+    show_dataframe("Unstack", df_unstacked)
 
-#     df_pivoted = pivot_dataframe(df)
-#     show_dataframe("Pivot", df_pivoted)
+    df_pivoted = pivot_dataframe(df)
+    show_dataframe("Pivot", df_pivoted)
 
-#     df_melted = melt_dataframe(df)
-#     show_dataframe("Melt", df_melted)
+    df_melted = melt_dataframe(df)
+    show_dataframe("Melt", df_melted)
 
-#     df_transposed = transpose_dataframe(df)
-#     show_dataframe("Transpose", df_transposed)
+    df_transposed = transpose_dataframe(df)
+    show_dataframe("Transpose", df_transposed)

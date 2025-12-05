@@ -56,16 +56,30 @@ def compare_monthly_sales(
     sales_year1: list, sales_year2: list, sales_year3: list, months: list
 ) -> t.Tuple[plt.Figure, plt.Axes, plt.Axes]:
     # Write here your code
-    pass
+    fig, ax1 = plt.subplots()
+    
+    ax1.set_title("Monthly Sales Comparison: 2020 vs 2021")
+    ax1.plot(months, sales_year1)
+    ax1.plot(months, sales_year2)
+    ax1.bar(months, sales_year1, width=1, edgecolor="white", linewidth=0.7)
+    ax1.bar(months, sales_year2, width=1, edgecolor="white", linewidth=0.7)
+
+    fig, ax2 = plt.subplots()
+    ax2.pie(sales_year3, labels=months)
+    ax2.set_title("2022 Monthly Sales Distribution")
+
+    print(ax1.patches)
+
+    return fig, ax1, ax2
 
 
 # Para probar el código, descomenta las siguientes líneas
-# sales_2020 = np.random.randint(100, 500, 12)
-# sales_2021 = np.random.randint(100, 500, 12)
-# sales_2022 = np.random.randint(100, 500, 12)
-# months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+sales_2020 = np.random.randint(100, 500, 12)
+sales_2021 = np.random.randint(100, 500, 12)
+sales_2022 = np.random.randint(100, 500, 12)
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
-# if __name__ == "__main__":
-#     fig, ax1, ax2 = compare_monthly_sales(sales_2020, sales_2021, sales_2022, months)
-#     plt.show()
+if __name__ == "__main__":
+    fig, ax1, ax2 = compare_monthly_sales(sales_2020, sales_2021, sales_2022, months)
+    plt.show()

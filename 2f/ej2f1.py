@@ -51,27 +51,37 @@ from pandas.core.frame import DataFrame
 
 def create_histograms(df: DataFrame, features: List[str]) -> Figure:
     # Write here your code
-    pass
+    fig, axs = plt.subplots(2, 3)
+    for i, feature in enumerate(features):
+        ax = axs[i // 3, i % 3]
+        sns.histplot(df, x=feature, ax=ax)
+    plt.tight_layout()
+    return fig
 
 
 def save_img_pickle(fig: Figure, filename: str) -> None:
     # Write here your code
-    pass
+    with open(filename, 'wb') as output_file:
+        pickle.dump(fig, output_file)
+    plt.close(fig)
+    return True
 
 
 def load_and_display_figure(filename: str) -> Figure:
     # Write here your code
-    pass
+    with open(filename, 'rb') as output_file:
+        fig = pickle.load(output_file)
+    return fig
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     wine = load_wine()
-#     df_wine = pd.DataFrame(data=wine.data, columns=wine.feature_names)
-#     df_wine["target"] = pd.Categorical.from_codes(wine.target, wine.target_names)
+if __name__ == "__main__":
+    wine = load_wine()
+    df_wine = pd.DataFrame(data=wine.data, columns=wine.feature_names)
+    df_wine["target"] = pd.Categorical.from_codes(wine.target, wine.target_names)
 
-#     fig_histograms = create_histograms(df_wine, df_wine.columns[:6])
-#     is_saved = save_img_pickle(fig_histograms, "data/histograms_wine.pickle")
-#     print("Figure saved:", is_saved)
-#     fig_loaded = load_and_display_figure("data/histograms_wine.pickle")
-#     plt.show()
+    fig_histograms = create_histograms(df_wine, df_wine.columns[:6])
+    is_saved = save_img_pickle(fig_histograms, "data/histograms_wine.pickle")
+    print("Figure saved:", is_saved)
+    fig_loaded = load_and_display_figure("data/histograms_wine.pickle")
+    plt.show()

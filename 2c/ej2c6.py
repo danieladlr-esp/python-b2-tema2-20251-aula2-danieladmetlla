@@ -36,23 +36,36 @@ from sklearn.preprocessing import StandardScaler
 
 def prepare_data_for_pca(file_path: str) -> pd.DataFrame:
     # Write here your code
-    pass
+    df = pd.read_csv(file_path, skiprows=14)
+    pca = df.drop("MEDV", axis=1)
+    print(pca)
+    return pca
 
 
 def perform_pca(data: pd.DataFrame, n_components: int) -> PCA:
     # Write here your code
-    pass
+    scaler = StandardScaler()
+    data_scaled = scaler.fit_transform(data)
+    pca = PCA(n_components=n_components)
+    pca.fit(data_scaled)
+    return pca
 
 
 def plot_pca_results(pca: PCA) -> tuple:
     # Write here your code
-    pass
+    evr = pca.explained_variance_ratio_
+    cev = evr.cumsum()
+
+    plt.bar(range(1, pca.n_components_ + 1), evr)
+    plt.step(range(1, pca.n_components_ + 1), cev, where="mid")
+    plt.show()
+    return evr, cev
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     FILE_PATH = current_dir / "data/housing.csv"
-#     dataset = prepare_data_for_pca(FILE_PATH)
-#     pca = perform_pca(dataset, 4)
-#     _, _ = plot_pca_results(pca)
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    FILE_PATH = current_dir / "data/housing.csv"
+    dataset = prepare_data_for_pca(FILE_PATH)
+    pca = perform_pca(dataset, 4)
+    _, _ = plot_pca_results(pca)

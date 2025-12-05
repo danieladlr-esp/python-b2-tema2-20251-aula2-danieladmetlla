@@ -35,28 +35,30 @@ import pandas as pd
 
 def group_and_aggregate(df, group_columns, agg_dict):
     # Write here your code
-    pass
+    df = df.groupby(group_columns)
+    return df.aggregate(agg_dict)
 
-def standardize_column_by_group(df, group_columns, column_to_standardize):
+def standardize_column_by_group(df: pd.DataFrame, group_columns, column_to_standardize):
     # Write here your code
-    pass
+    df[column_to_standardize + "_Standardized"] = (df[column_to_standardize] - df[column_to_standardize].mean()) / df[column_to_standardize].std()
+    return df
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de que el path al archivo sea correcto
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     FILE_PATH = current_dir / "data/products.csv"
-#     df = pd.read_csv(FILE_PATH)
-#     group_columns = ["Category", "Brand"]
-#     agg_dict = {"Price": ["min", "max", "sum"], "Rating": ["mean"]}
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    FILE_PATH = current_dir / "data/products.csv"
+    df = pd.read_csv(FILE_PATH)
+    group_columns = ["Category", "Brand"]
+    agg_dict = {"Price": ["min", "max", "sum"], "Rating": ["mean"]}
 
-#     aggregated_df = group_and_aggregate(df, group_columns, agg_dict)
-#     print(aggregated_df)
+    aggregated_df = group_and_aggregate(df, group_columns, agg_dict)
+    print(aggregated_df)
 
-#     group_columns = ["Category", "Brand"]
-#     column_to_standardize = "Rating"
+    group_columns = ["Category", "Brand"]
+    column_to_standardize = "Rating"
 
-#     df_standardized = standardize_column_by_group(
-#         df, group_columns, column_to_standardize
-#     )
-#     print(df_standardized.head())
+    df_standardized = standardize_column_by_group(
+        df, group_columns, column_to_standardize
+    )
+    print(df_standardized.head())

@@ -47,35 +47,43 @@ from typing import Tuple, Dict, Any
 
 def df_to_json(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     # Write here your code
-    pass
+    params = {"orient": "records", "lines": True}
+    df.to_json(filename, **params)
+    return pd.read_json(filename, orient=params["orient"], lines=params["lines"]), params
 
 
 def df_to_csv(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     # Write here your code
+    params = {"sep": ';', "header": None, "encoding": 'utf-8'}
+    df.to_csv(filename, **params)
+    return pd.read_csv(filename, sep=params["sep"], header=params["header"], encoding=params["encoding"]), params
     pass
 
 
 def df_to_excel(df: pd.DataFrame, filename: str) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     # Write here your code
+    params = {"sheet_name": "Pandas to Excel"}
+    df.to_excel(filename, **params)
+    return pd.read_excel(filename, sheet_name=params["sheet_name"]), params
     pass
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     path_csv = current_dir / "data/sales.csv"
-#     df_sales = pd.read_csv(path_csv)
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    path_csv = current_dir / "data/sales.csv"
+    df_sales = pd.read_csv(path_csv)
 
-#     df_from_json, used_params = df_to_json(
-#         df_sales, current_dir / "data/df_to_json_sales.json"
-#     )
-#     df_from_csv, used_params_csv = df_to_csv(
-#         df_sales, current_dir / "data/df_to_csv_sales.csv"
-#     )
-#     df_from_excel, used_params_excel = df_to_excel(
-#         df_sales, current_dir / "data/sales.xlsx"
-#     )
+    df_from_json, used_params = df_to_json(
+        df_sales, current_dir / "data/df_to_json_sales.json"
+    )
+    df_from_csv, used_params_csv = df_to_csv(
+        df_sales, current_dir / "data/df_to_csv_sales.csv"
+    )
+    df_from_excel, used_params_excel = df_to_excel(
+        df_sales, current_dir / "data/sales.xlsx"
+    )
 
-#     print(df_from_json.head())
-#     print(df_from_csv.head())
-#     print(df_from_excel.head())
+    print(df_from_json.head())
+    print(df_from_csv.head())
+    print(df_from_excel.head())

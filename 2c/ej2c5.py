@@ -48,37 +48,84 @@ import numpy as np
 
 def read_csv(filepath):
     # Write here your code
-    pass
+    return pd.read_csv(filepath)
 
 
-def clean_dataframe(df):
+def clean_dataframe(df: pd.DataFrame):
     # Write here your code
-    pass
+    dictionary = df.to_dict()
+    for column in dictionary:
+        if column != "Name":
+            for i in dictionary[column]:
+                if not str(dictionary[column][i]).isnumeric():
+                    dictionary[column][i] = np.nan
+                if column == "Maths" and str(dictionary[column][i]).isnumeric():
+                    dictionary[column][i] = float(dictionary[column][i])
+    return pd.DataFrame(dictionary)
 
 
 def dropna_specific_row_in_column(df, column_name):
     # Write here your code
-    pass
+    dictionary = df.to_dict()
+    NaNs = ["NaN", "nan", "-", "na", "NA", " "]
+    for i in range(len(dictionary[column_name])):
+        if str(dictionary[column_name][i]) in NaNs:
+            for column in dictionary:
+                dictionary[column].pop(i)
+    return pd.DataFrame(dictionary)
 
 
 def fillna_method(df, column_name, fill_method="ffill", fill_value=None, limit=1):
     # Write here your code
-    pass
+    dictionary = df.to_dict()
+    NaNs = ["NaN", "nan", "-", "na", "", "NA", " "]
+    ffill = 0
+    ffill_count = 0
+    mean = 0
+    mean_limit = 0
+
+    if fill_method == "mean":
+        for i in dictionary[column_name]:
+            if str(dictionary[column_name][i]) not in NaNs:
+                mean += dictionary[column_name][i]
+                mean_limit += 1
+        mean /= mean_limit
+
+    for i in dictionary[column_name]:
+        if str(dictionary[column_name][i]) not in NaNs:
+            ffill = dictionary[column_name][i]
+            ffill_count = 0
+        if str(dictionary[column_name][i]) in NaNs:
+            if fill_method == "ffill":
+                if ffill_count < limit:
+                    dictionary[column_name][i] = ffill
+            elif fill_method == "mean":
+                if fill_value == None:
+                    print(dictionary[column_name][i])
+                    dictionary[column_name][i] = mean
+                    print(dictionary[column_name][i])
+                else:
+                    dictionary[column_name][i] = fill_value
+            else:
+                print("Error: Metodo no valido.")
+                break
+
+    return pd.DataFrame(dictionary)
 
 
 # Para probar el código, descomenta las siguientes líneas y asegúrate de que el path al archivo sea correcto
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
-#     FILE_PATH = current_dir / "data/grades_na.csv"
-#     dataframe = read_csv(FILE_PATH)
-#     df_cleaned = clean_dataframe(dataframe)
-#     df_drop_na_rows = dropna_specific_row_in_column(df_cleaned, "Name")
-#     df_filled_column_ffill = fillna_method(
-#         df_drop_na_rows, "Hindi", fill_method="ffill", limit=1
-#     )
-#     df_filled_column_mean = fillna_method(
-#         df_filled_column_ffill, "Maths", fill_method="mean"
-#     )
+if __name__ == "__main__":
+    current_dir = Path(__file__).parent
+    FILE_PATH = current_dir / "data/grades_na.csv"
+    dataframe = read_csv(FILE_PATH)
+    df_cleaned = clean_dataframe(dataframe)
+    df_drop_na_rows = dropna_specific_row_in_column(df_cleaned, "Name")
+    df_filled_column_ffill = fillna_method(
+        df_drop_na_rows, "Hindi", fill_method="ffill", limit=1
+    )
+    df_filled_column_mean = fillna_method(
+        df_filled_column_ffill, "Maths", fill_method="mean"
+    )
 
-#     print(dataframe.head())
-#     print(df_filled_column_mean.head())
+    print(dataframe.head())
+    print(df_filled_column_mean.head())
