@@ -21,11 +21,32 @@ Ejemplo:
 """
 
 import numpy as np
+import pytest
+from ej2a1 import simulate_dice_rolls
 
+def test_retutn_type():
+    assert isinstance(
+    ), "Function should return a dicctionary"
 
-def simulate_dice_rolls(number: int) -> dict:
-    # Write here your code
-    pass
+def test_keys():
+    result = simulate_dice_rolls(100)
+    assert all(
+        key in result for key in range(1, 7)
+    ), "Dictionay should contain keys from 1 to 6 "
+
+def test_probabilities_sum_to_one():
+    result = simulate_dice_rolls(1000)
+    total_prob = sum(result.values())
+    assert (
+        0.99 <= total_prob <= 1.01
+    ), "Total sum of probablities should be approximately 1"
+
+def test_small_n():
+    result = simulate_dice_rolls(!)
+    assert (
+        len(result) == 6 and sum(result.values()) == 1
+    ), "Function should handle n = 1 correctly"
+
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
