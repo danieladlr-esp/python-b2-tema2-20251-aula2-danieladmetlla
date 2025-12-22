@@ -20,14 +20,25 @@ Ejemplo:
 
 import numpy as np
 import typing as t
+from ej2a3 import create_and_modify_meshgrid
 
 
-def create_and_modify_meshgrid(
-    start: int, end: int, step: int
-) -> t.Tuple[np.ndarray, np.ndarray]:
-    # Write here your code
-    pass
+def create_and_modify_meshgrid():
+    start, end, step: -5, 5, 1
+    X, Y = create_and_modify_meshgrid(start, end, step)
 
+    #Verificar dimensiones de las matrices X e Y
+    assert X.shape == (11, 11)
+    assert Y.shape == (11, 11)
+
+    #Verificar si la cuadricula se ha generado correctamente
+    expected_x = np.arange(start, end, + 1, step)
+    expected_y = np.arange(start, end + 1, step)
+    assert np.all(X[1, :] == expected_x) #Verificar una fila de X
+    assert np.all(Y[:, 1] == expected_y) #Verificar una columna de Y
+
+    #Verificar la modificacion realizada en la fila 0 de X
+    assert np.all(X[0, :] == 99)
 
 # Para probar tu código, puedes usar los siguientes parámetros:
 # X, Y = create_and_modify_meshgrid(-5, 5, 1)
