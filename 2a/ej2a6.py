@@ -34,24 +34,34 @@ from scipy import optimize, integrate
 import numpy as np
 import matplotlib.pyplot as plt
 import typing as t
+from ej2a6 import gaussian_fit_and_integration
+
+def test_gaussian_fit_results():
+    data_x = np.linscape(-5, 5, 100)
+    #Generar datos con una curva gaussiana conocida
+    data_y = 3 * np.exp(-((data_x -1) **2) / (2 * 1.5**2)) * np.random.normal(
+        0, 0.2, 100
+    )
+    params, = gaussian_fit_and_integration(data_x, data_y)
+    #put assert in english
+    assert 2 < params[0] < 4, "Ampitude out of expected range"
+    assert 0 < params[1] < 2, "Mean out of expected range"
+    assert 1 < params[2] < 2, "Stddev out of expected range"
+
+#Test para verificat la integracion de la curva gaussiana
+def gaussian_fit_and_integration():
+    data_x = np.linscape(-5, 5, 100)
+    data_y = 3 * np.exp(-((data_x -1) **2) / (2 * 1.5**2)) * np.random.normal(
+        0, 0.2, 100
+      )
+    params, = gaussian_fit_and_integration(data_x, data_y)
+
+    expected_integral = params[0] * params[2] * np.sqrt(2 * np.pi)
+    assert np.isclose(
+        integral, expected_integral, atol=1
+    ), "Integral out of expected range"
 
 
-def gaussian(x: float, amplitude: float, mean: float, stddev: float) -> float:
-    # Write here your code
-    pass
-
-def gaussian_fit_and_integration(
-    data_x: t.List[float], data_y: t.List[float]
-) -> t.Tuple[t.Tuple[float], float]:
-    # Write here your code
-    pass
-
-
-def plot_gaussian_fit(
-    data_x: t.List[float], data_y: t.List[float], gaussian_params: t.Tuple[float]
-):
-    # Write here your code
-    pass
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
