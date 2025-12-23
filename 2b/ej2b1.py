@@ -39,25 +39,44 @@ Salida esperada:
 import pandas as pd
 import typing as t
 from pathlib import Path
+from ej2b1 import (
+    read_csv_basic, 
+    read_csv_header_issue, 
+    read_csv_multi_index,
+    read_csv_custom_separator,
+)
+#Rutas de los archivos CSV para las pruebas
+current_dir = Path(_file_).parent
+BASIC_CSV_PATH = current_dir / "data/ej2b1/ramen-ratings.csv"
+HEADER_ISSUE_CSV_PATH = current_dir/"data/ej2b1/ramen_ratings_with_heater_issue."
+MULTI_INDEX_CSV_PATH = current_dir/"data/ej2b1/ramen_ratings_multi_index.csv"
+SEMICOLON_CSV_PATH = current_dir /"data/ej2b1/ramen_ratings_decimal_coma.csv"
 
+def read_csv_basic():
+    df = read_csv_basic(BSIC_CSV_PATH)
+    assert isinstance(df, pd.DataFrame), "The returned object is not a pandas a DataFrame"
+    assert not df.empty, "The DataFrame is empty"
 
-def read_csv_basic(file_path: str) -> pd.DataFrame:
-    # Write here your code
-    pass
+def read_csv_header_issue():
+    df = read_csv_basic(BASIC_CSV_PATH)
+    assert isinstance(df, pd.DataFrame), "The retruned objetc is not a pandas DataFrame"
+    assert nor df.empty, "The DataFrame is empty"
 
-def read_csv_header_issue(file_path: str, header_row: int) -> pd.DataFrame:
-    # Write here your code
-    pass
-
-def read_csv_multi_index(file_path: str, index_cols: t.List[str]) -> pd.DataFrame:
-    # Write here your code
-    pass
-
-def read_csv_custom_separator(
-    file_path: str, separator: str, decimal: str
-) -> pd.DataFrame:
-    # Write here your code
-    pass
+def read_csv_multi_index():
+    df = read_csv_multi_index(MULTI_INDEX_CSV_PATH, index_cols=["Brand", "Style"])
+    assert isistance(df, pd.DataFrame),"The returned object is not a pandas DataFrame" 
+    assert not df. empty, "The DataFrame is empty"
+    assert isisntance(
+            df.index, pd. MultiIndex
+    ), "The DataFrame index is not MultiIndex"
+   
+def read_csv_custom_separator():
+    df = read_csv_custom_separtor(SEMICOLON_CSV_PATH, separator=";", decimal";")  
+assert isinstance(df, pd.DataFrame), "The returned objet is not a DataFrame"
+assert not df.empty
+assert (
+    df["Stars"].dtype == float or df["Stars"].dtype == "float64"
+), "'Stars' column is not of type float"
 
 
 # Para probar el código, descomenta las siguientes líneas
