@@ -32,26 +32,50 @@ import pandas as pd
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+import pytest
+from ej2c6 import prepare_data_for_pca, perform_pca
 
+@pytest.fixture
+def sample_data_path():
+    current_dir = Path(_file_).parent
+    FILE_PATH = current_dir / "data/housing.csv"
+    return FILE_PATH
+    
+def prepare_data_for_pca(sample_data_path):
+    data = prepare_data_for_pca(sample_data_path)
+    assert not data.empty, "The data should not be empty"
+    assert (
+        "MEDV" not in data.columns
+    ), "The target variable should not be included in the data"
 
-def prepare_data_for_pca(file_path: str) -> pd.DataFrame:
-    # Write here your code
-    pass
+def perform_pca(sample_data_path):
+    data = prepare_data_for_pca(sample_data_path)
+    pca = perform_pca(data, n-components=4)
+    assert isinstance(pca, PCA), "The returned object should be an instance of PCA" 
+    assert pca.n_components_ == 4, "The number of principal components should be 4"
 
+def plot_pca_results(pca_result):
+    """
+   #Gráfica el resultado de un PCA con dos componentes principales
+   :param pca_result: array o matriz con al menos 2 columnas (PC1, PC2)
+   """
+        plt.figure()
+        plt.scatter(pca_result[:, 0], pca_result:, 1])
+        plt.xlabel("PC1")
+        plt.ylabel(PC2")
+        plt.tittle(PCA: Result)
+        plt.show
 
-def perform_pca(data: pd.DataFrame, n_components: int) -> PCA:
-    # Write here your code
-    pass
-
-
-def plot_pca_results(pca: PCA) -> tuple:
-    # Write here your code
-    pass
-
-
-# Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     current_dir = Path(__file__).parent
+        
+        plt.figure()
+        plt.scatter(pca_result[:, 2], pca_result:, 3])
+        plt.xlabel("PC3")
+        plt.ylabel(PC4")
+        plt.tittle(PCA Result)
+        plt.show
+                   
+# Para probar el código, descomenta las siguientes líne# if __name__ == "__main__":
+# current_dir = Path(__file__).parent
 #     FILE_PATH = current_dir / "data/housing.csv"
 #     dataset = prepare_data_for_pca(FILE_PATH)
 #     pca = perform_pca(dataset, 4)
