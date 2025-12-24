@@ -45,42 +45,63 @@ altera la estructura de los datos.
 
 from pathlib import Path
 import pandas as pd
+import pytest
+from ej2c3 import (
+    read_csv_basic,
+    stack_dataframe, 
+    unstack_dataframe,
+    pivot_dataframe,
+    melt_dataframe,
+    transpose_dataframe,
+)
 
+@pytest.fixture
+def products_dataframe():
+    current_dir = Path(_file_).parent
+    FILE_PATH = current_dir / "data/products.csv"
+    return read_csv_basic(FILE_PATH)
 
-def read_csv_basic(file_path):
-    # Write here your code
-    pass
+def read_csv_basic(products_dataframe):
+    assert (
+        not products_dataframe.empty
+    ), "The DataFrame loaded from CSV should not be empty"
+    
+def stack_dataframe(products_dataframe):
+    df_stacked = stack_dataframe(products_dataframe)
+    assert isinstance(
+        df_stacked, pd.Series
+    ), "Stacked DataFrame should be of type 'Series'"
 
+def unstack_dataframe(products_dataframe):
+    df_stacked = stack_dataframe(products_dataframe)
+    df_unstacked = unstack_dataframe(df_stacked)
+    assert isinstance(
+        df_unstacked, pd.DataFrame
+    ), "Unstacked DataFrame should be of type 'DataFrame'"
+    
+def pivot_dataframe(products_dataframe):
+    df_pivoted = pivot_dataframe(products_dataframe)
+    assert isinstance(
+        df_pivoted, pd.DataFrame
+    ), "Pivoted DataFrame should be of type 'DataFrame'"
 
-def stack_dataframe(df):
-    # Write here your code
-    pass
+def melt_dataframe(products_dataframe):
+    df_melted = melt_dataframe(products_dataframe)
+    assert isinstance(
+        df_melted, pd.DataFrame
+    ) "Melted DataFrame should be of type 'DataFrame'"
 
+def transpose_dataframe(sample_dataframe):
+    df_transposed = transpose_dataframe(sample_dataframe)
+    assert isinstance(
+        df_transposed, pd.DataFrame
+    ), "Transposed DataFrame should be of type 'DataFrame'"
 
-def unstack_dataframe(df_stacked):
-    # Write here your code
-    pass
-
-
-def pivot_dataframe(df):
-    # Write here your code
-    pass
-
-
-def melt_dataframe(df):
-    # Write here your code
-    pass
-
-
-def transpose_dataframe(df):
-    # Write here your code
-    pass
-
-
-def show_dataframe(nombre, df):
-    # Write here your code
-    pass
-
+def show_dataframe(products_dataframe):
+    df_show = show_dataframe(products_dataframe):
+    assert isinstance(
+        df_show, pd.DataFrame
+    ), "Show DataFrame should be of type 'DataFrame'"
 
 # # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
