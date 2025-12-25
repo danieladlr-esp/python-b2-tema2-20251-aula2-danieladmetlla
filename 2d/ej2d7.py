@@ -36,24 +36,40 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+import pytest
+from ej2d7 import (
+   prepare_data_for_clustering, 
+   perform_kmeans_clustering, 
+   visualize_clusters,
+)
 
+@pytest.fixture
+def german_credit_data_path():
+   current_dir = Path(__file__).parent
+   file_path = current_dir / "data/german_credit.csv"
+   return file_path
+  
+def prepare_data_for_clustering(german_credit_data_path):
+   data_scaled = prepare_data_for_clustering(german_credit_data_path) 
+   assert data_scaled.mean(axis=0).all() == pytest.approx(
+      1, abs=1e-6
+   ), "The data should have a standard deviation of 1
 
-def prepare_data_for_clustering(file_path: str) -> pd.DataFrame:
-    # Write here your code
-    pass
-
-
-def perform_kmeans_clustering(data: np.ndarray, n_clusters: int) -> np.ndarray:
-    # Write here your code
-    pass
-
-
-def visualize_clusters(
-    data: np.ndarray, labels: np.ndarray, is_testing_execution: bool = False
-) -> Tuple[np.ndarray, plt.Figure, plt.Axes]:
-    # Write here your code
-    pass
-
+def perform_kmeans_clustering(german_credit_data_path):
+      data_scaled = prepare_data_for_clustering(german_credit_data_path)
+      n_clusters = 5
+      labels = perform_kmeans_clustering(data_scaled, n_clusters)
+      assert len(labels) > 0, "The labels should not be empty"
+      assert (
+         len(set(labels)) ==n_clusters
+      ), The number of unique labels should match the number of clusters"
+   
+def visualize_clusters(german_credit_data_path)
+     data_scaled = prepare_data_for_clustering(german_credit_data_path)
+     n_clusters = 5
+     labels = perform_kmeans_clustering(data_scaled, n_clusters)
+     data_reduced, fig, ax = visualize_cllusters(data_scaled, labels, True)
+     assert data_reduced.shape[1] == 2, "The data should be reduced to 2 dimensions"
 
 # Para probar el código, desconmenta las siguientes líneas
 # if __name__ == '__main__':
