@@ -33,27 +33,38 @@ Salida esperada:
 from pathlib import Path
 import pandas as pd
 from scipy import stats
+import pytest 
+from ej2d1 import (
+    calculate_mean,
+    calculate_variance,
+    calculate_skewness,
+    calculate_kurtosis,
+)
 
+@pytest.fixture
+def loaded_data():
+    current_dir = Path(__file__).parent
+    return current_dir / "data/calificaciones.csv"
+    
+def calculate_mean(loaded_data):
+    assert calculate_mean(loaded_data) == pytest.approx(
+        80.3, 0.1
+    ), "Mean calculation failed"
 
-def calculate_mean(file_path: str) -> float:
-    # Write here your code
-    pass
+def calculate_variance(loaded_data):
+    assert calculate_variance(loaded_data) == pytest.approx(
+        92.3, 0.1
+), "Variance calculation failed"
+    
+def calculate_skewness(loaded_data):
+    assert calculate_skewness(loaded_data) == pytest.approx(
+        -0.12, 0.1 
+), "Skewness calculation failed"
 
-
-def calculate_mean(file_path: str) -> float:
-    # Write here your code
-    pass
-
-
-def calculate_skewness(file_path: str) -> float:
-    # Write here your code
-    pass
-
-
-def calculate_kurtosis(file_path: str) -> float:
-    # Write here your code
-    pass
-
+def calculate_kurtosis(loaded_data):
+    assert calculate_kurtosis(loaded_data) == pytest.approx(
+        -0.14, 0.1
+), "Kurtosis calculation failed"
 
 # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
