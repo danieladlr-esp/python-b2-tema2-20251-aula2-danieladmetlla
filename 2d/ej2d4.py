@@ -37,27 +37,57 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
+from ej2d4 import (
+    prepare_data, 
+    train_svm_classification, 
+    predict_species, 
+    target_names,
+)
 
+@pytest.fixture
+def iris_dataset_path():
+    current_dir = Path(__file__).parent
+    return current_dir / "data/iris_dataset.csv"
 
-def prepare_data(file_path: str) -> Tuple:
-    # Write here your code
-    pass
+@pytest.fixture
+def trained_classifier(iris_dataset_path):
+    X_train, X_test, y_train, y_test = prepare_data(iris_dataset_path)
+    clf = train_svm_classifier(X_train, y_train)
+    return clf, X_test, y_test
 
+def prepare_data(iris_dataset_path):
+    X_train, X_test, y_train, y_test = prepare_data(iris_dataset_path)
+    #Asegurate de que los datos esten dividos correctamente
+    assert len (X_train) > 0 and len (X_test) > 0
+    assert len (Y_train) > 0 and len (Y_test) > 0
+    #Comprobar que la proporcion de division es aproximadamente 80/20
+    assert len(X_train) / len(X_train) + len(X_test)) == pytest.approx(
+        0.8, 0.05
+    ), "The training set should be around 80% of the total data"
+    
+def perform_svm_classification(trained_classifier):
+        clf, X_test, y_test = trained_classifier
+        accuracy, report = perdom_svm_classification(X_test, y_test, clf)
+        assert 0 <= accuracy <= 1, "The accuray should be in the range [0, 1]"
+    
+    def train_svm_classifier(iris_dataset_path):
+      X_train, _, y_train, _ = prepare_data(iris_dataset_path)
+      clf = train_svm_classifier(X_train, y_train)
+      #Comprobar que el clasificador es una instancia de SVC
+      assert isinstance(clf, SVC), "The classifier should be an instance of SVC"
 
-def perform_svm_classification(X_test, y_test, clf) -> Tuple[float, str]:
-    # Write here your code
-    pass
-
-
-def train_svm_classifier(X_train, y_train) -> SVC:
-    # Write here your code
-    pass
-
-
-def predict_species(clf: SVC, features: List[float], feature_names: List[str]) -> str:
-    # Write here your code
-    pass
-
+def predict_species(trained_classifier):
+   clf, X_test, y_test = trained_classifier
+   feature_names = [
+       "sepal length (cm)",
+       "sepal width (cm)",
+       "sepal length (cm)",
+       "sepal width (cm)",
+   ]
+prediction = predict_species(clf, [5.1, 3.5, 1.4, 0.2], feature_names)
+assert (
+    prediction in target_names.values()
+), "The prediction should be one of the target names"
 
 target_names = {0: "Iris Setosa", 1: "Iris Versicolor", 2: "Iris Virginica"}
 
