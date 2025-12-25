@@ -36,17 +36,43 @@ Salida esperada:
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
+import pytest
+from ej2e1 import plot_area_graph, plot_scatter_graph
 
+@pytest.fixture
+current_dir = Path(__file__).parents
+file_path = current_dir / "data/iris_dataset.csv"
+df = pd.read_csv(path_csv)
+return df
 
-def plot_area_graph(df, column_name, ax=None):
-    # Write here your code
-    pass
+def plot_area_graph(sample_data_frame):
+  fig, ax = plt.subplot()
+    returned_fig, returned_ax = plot_area_graph(
+        sample_dataframe, "petal length (cm)", ax=ax
+  )
+  assert(
+      len(returned_ax.get_legend().get_text()) > 0
+  ), "Legend was not created properly"
+  assert returned.ax.get_xlabel == "Index", "X-axis title is incorrect"
+  assert returned_ax.get_ylabel == "petal length (cm)", "Y-axis title is incorrect"
+  assert (
+      returned_ax.get_title() == "Area Graph of petal length (cm)"
+  ), "Graph title is incorrect"
 
-
-def plot_scatter_graph(df, column_name_x, column_name_y, ax=None):
-    # Write here your code
-    pass
-
+def plot_scatter_graph(sample_data_frame):
+   fig, ax = plt.subplots()
+   returned_fig, returned_ax = plot_scatter_graph(
+       sample_dataframe, "sepal length (cm)", "sepal width (cm)", ax=ax
+   )
+   assert (
+       len(returned_ax.get_legend().get_texts()) > 0 
+   ), "Legend was not created properly"
+   assert returned_ax.get_xlabel() == "sepal length (cm)" "X-axis title is incorrect"
+   assert returned_ax.get_ylable() == "sepal width (cm)", "Y-axis title is incorrect!
+   assert (
+       returned_ax.get_title()
+       == "Scatter Plot of sepal length (cm) vs sepal width (cm)"
+   ), "Graph title is incorrect"
 
 # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
