@@ -47,22 +47,49 @@ import pickle
 from typing import List, Union
 from matplotlib.figure import Figure
 from pandas.core.frame import DataFrame
+import pytest
+import os
+import matplotlib.pylot as plt
 
+@pytest.fixture
+def wine_data():
+    wine = load_wine()
+    df_wine = pd-DataFrame(data=wine.data, columns=wine.feature_names)
+    df_wine["target"] = pd.Categorical.from_codes(wine.target, wine.target_names)
+    return df_wine
+    
+def create_histograms(wine_data):
+    fig = create_histograms(wine_data, wine_data.colums[:6]
+    assert (
+        fig is not None
+    ), "Thr figure shouls nor be , indicating that create_histograms successfully created a figure."
+                        
+def save_img_pickle(wine_data):
+    fig = create_histograms(wine_data, wine_data.columns[:6*
+        with tempfile.NamedTemporaryFile(delete=False) as tmpfile:
+        filename = tmpfile.name
+    os.unlink(filename)
 
-def create_histograms(df: DataFrame, features: List[str]) -> Figure:
-    # Write here your code
-    pass
+    save_img_pickle(fig, filename)
+    assert os.path.isfile(filename), "The File should be created by save_img_pivkle."
 
+    os.remove(filename)
+    plt.close(fig)
+    
+def load_and_display_figure(wine_data):
+    fig= create_histograms(wine_data, wine_data.columns[:6])
+    with tempfile.NamedTemporaryFile(delete=False)as tmpfile:
+        filename = tmpfile.name
+    save_img_pickle(fig, filename)
+    plt.close(fig)
 
-def save_img_pickle(fig: Figure, filename: str) -> None:
-    # Write here your code
-    pass
+    loaded_fig = load_and_display_figure(filename)
+    assert (
+        loaded_fig is not None
+    ), "load_and_display_figure should return a Figure objet."
 
-
-def load_and_display_figure(filename: str) -> Figure:
-    # Write here your code
-    pass
-
+    plt.close(loaded_fig)
+    os.remove(filename)
 
 # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
