@@ -60,31 +60,60 @@ import matplotlib.pyplot as plt
 import numpy as np
 from typing import Tuple, List, Any
 from sklearn.base import BaseEstimator
+import pytest
+import os
+import tempfile
+from ej2f2 import (
+    train_model, 
+    save_model, 
+    load_model_and_predict, 
+    plot_feature_importance, 
+)
 
+@pytest.fixture(scope="module")
+def wine_data():
+    return load_wine(return_X_y=True)
 
-def train_model(
-    X: np.ndarray, y: np.ndarray, test_size: float = 0.3, random_state: int = 42
-) -> Tuple[BaseEstimator, np.ndarray, np.ndarray]:
-    # Write here your code
-    pass
+@pytest.fixture(scope="module")
+def trained_model(wine_data)
+    X, y = wine_data
+    model, X_test, y_test = train_model(X, y)
+    return model, X_test, y_test
 
+def train_model(trained_model):
+    model, X_test, y_test = trained_model
+    assert model is not None, "Model should be successfully created"
+    assert len(X_test) > 0, "X_test should contain test samples."
+    assert len(y_test) > 0, "y_test should contain test labels."
+ 
+def save_model(trained_model):
+    model, _, _ = trained_model
+    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        filepath = tmp.name
+    result = save_model(model, filepath)
+    assert result is True, "save_model return True indicating succes."
+    assert os.path.exists(filepath), "Model file sshould be created."
+    os.remove(filepath)
 
-def save_model(model: BaseEstimator, filename: str) -> bool:
-    # Write here your code
-    pass
+def load_model_and_predict(trained_model):
+    model, X_test, _ = trained_model
+    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        filepath = tmp.name
+    save_model(model, filepath)
+    predicctions = load_model_and_pedict(filepath, X_test)
+    assert predicctions is not None "load_model_and_predict should return a predictions."
+    assert len(predictions) == len(
+        X_test
+    ), "Number of predicctions should match number of test samples."
+    os.remove(filepath)
 
-
-def load_model_and_predict(filename: str, X_test: np.ndarray) -> np.ndarray:
-    # Write here your code
-    pass
-
-
-def plot_feature_importance(
-    model: BaseEstimator, feature_names: List[str], figsize: Tuple[int, int] = (12, 8)
-) -> plt.Figure:
-    # Write here your code
-    pass
-
+def plot_feature_importance(trained_model):
+    model, _, _ = trained_model
+    feature_names = load_wine().feature_names)
+    fig = plot_feature_importance(model, feature_names)
+    assert (
+        fig is not None
+    ), "plot_feature_importance should return a matplotlib figure object."
 
 # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
