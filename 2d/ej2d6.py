@@ -32,22 +32,53 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, mean_squared_error
+import pytest
+from ej2d6 import (
+    prepare_data_for_regression, 
+    perform_random_forest_regression
+    evaluate_regression_model, 
 
+@pytest.fixture
+def sample_data_path():
+    current_dir = Path(__file__).parent
+    file_path = current_dir / "data/housing.csv"
+    return file_path
 
-def prepare_data_for_regression(file_path: str) -> Tuple:
-    # Write here your code
-    pass
-
+@pytest.fixture
+def prepared_data(sample_data_path):
+    X_train, X_test, y_train, y_test = prepare_data_for_regression(sample_data_path)
+    return X_train, X_test, y_train, y_test 
+    
+def prepare_data_for_regression(prepared_data):
+    X_train, X_test, y_train, y_test = prepare_data
+    assert (
+        not X_train.empty and not X_test.empty
+    ), " The trainig and tst sets should not be empty"
+    assert (
+        not y_train.empty and not y_test.empty
+    ), "The training and test targets should not be empty"
+    assert len(X_train) > len(X_test) and len(y_train) > len(y_test)
+    ), "The training set should be larger than the test set"
 
 def perform_random_forest_regression(X_train, y_train) -> RandomForestRegressor:
-    # Write here your code
-    pass
-
+    X_train, _, y_train, _ = prepared_data
+    model = perform_random_forest_regression(x_train, y_train)
+    assert isinstance(
+        model, RandomForestRegressor
+    ), "The model should be and instance of RandomForest Regressor"
+    assert hasattr(
+        model, "featur_importances_"
+    ), "The model should have a 'feature_importances_'attribute"
 
 def evaluate_regression_model(model, X_test, y_test) -> Tuple[float, float]:
-    # Write here your code
-    pass
-
+    X_train, X_test, y_train, y_test = prepared_data
+    model = perform_random_forest_regression(X_train, y_train)
+    r_squared, rmse = evaluate_regression_model(model, X_test, y_test)
+    assert isinstance(r_squared, float) and isinstance(
+        rmse, floar
+    ), "The R^2 and RMSE should be floats"
+    assert -1 <= r_squared <= 1, "The R^2 should be in range[-1, 1]"
+    assert rmse >= 0, "The RMSE should be a positive number"
 
 # Para probar el código, debes descomentar las siguientes líneas:
 # if __name__ == '__main__':
