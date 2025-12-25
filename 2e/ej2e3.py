@@ -42,21 +42,57 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from sklearn.datasets import load_iris
+import pytest
 
 
-def data_processing(
-    data, feature_names, target=None, target_names=None, target_feature_name="species"
-):
-    # Write here your code
-    pass
+def data_processing():
+    iris = load_iris()
+    df_iris = data_processing(
+      iris.data, iris.feature_names, iris.target, iris.target_names
+    )
+    assert isinstance(df_iris, pd.DataFrame), "The result should be a pandas DataFrame"
+    expected_columns = list(iris.feature_names) + ["Species"]
+    assert all(
+      column in df_iris.columns for column in expected columns
+    ), "DataFrame should contain the expected columns"
+    assert len(df_iris) == len(
+        iris.data
+    ), "DataFrame should have the same number of rows as the input data"
 
+def pairplot_graphic_with_full_dataframe():
+    iris = load_iris()
+    df_iris = data_processing(
+        iris.data, iris.feature_names, iris.target, iris.target_names
+    )
+    viz_params = {
+        "hue": "species",
+        "diag_kind": "kde",
+        "kind": "scatter",
+        "palette": "husl",
+        "corner": True, 
+    }
+  plot = pairplot_graphic(df_iris, **iz_params)
+), "The function should return a seaborn PairGrid object"
+      
+def pairplot_graphic_with_specific_columns():
+    iris = load_iris()
+    df_iris = data_processing(
+        iris.data, iris.feature_names, iris.target, iris.target_names
+    )
+    viz_params = {
+        "hue": "species",
+        "diag_kind": "kde",
+        "kind": "scatter",
+        "palette": "husl",
+        "corner": True, 
+    }
+    columns_to_visualize = ["sepal length (cm)", "sepal width (cm)"]
+    plot = pairplot_graphic(df_iris, columns=columns_to_visualize, **viz_params)
+    assert isinstance(
+         plot, sns.PairGrid
+    ), "The function should return a seaborn PairGrid object even with specific columns"
 
-def pairplot_graphic( df: pd.DataFrame, columns: Optional[List[str]] = None, 
-                     **viz_params: Dict[str, str]) -> sns.PairGrid:
-    # Write here your code
-    pass
-
-
+      
 # Para probar el código, descomenta las siguientes líneas
 # if __name__ == "__main__":
 #     iris = load_iris()
