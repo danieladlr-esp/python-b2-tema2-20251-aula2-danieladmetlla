@@ -24,10 +24,18 @@ import numpy as np
 
 
 def simulate_dice_rolls(number: int) -> dict:
-    # Write here your code
-    pass
+    rolls = np.random.randint(1, 7, size=number)
+    counts = np.bincount(rolls, minlenght=7)[1:]
+    probabilities = counts / number
+    result_dict = {i+1: round(prob, 3) for i, prob in enumerate(probabilities)}
+    
+    return result_dict
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
 # num_rolls = 10000
 # print(simulate_dice_rolls(num_rolls))
+if _name_ == "-main_":
+    num_rolls = 10000
+    print(simulate_dice_rolls(num_rolls))
+    
