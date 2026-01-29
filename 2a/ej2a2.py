@@ -48,28 +48,44 @@ import typing as t
 
 
 def create_matrices() -> t.Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    # Write here your code
-    pass
+    zeros_matrix = np.zeros((3, 3), dtype=float)
+    ones_matrix = np.ones((2, 4), dtype=float)
+    identity_matrix = np.identity(4, dtype=float)
+    return zeros_matrix, ones_matrix, identity_matrix
 
 
 def manipulate_matrices(
     zeros_matrix: np.ndarray, ones_matrix: np.ndarray, identity_matrix: np.ndarray
 ) -> t.Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    # Write here your code
-    pass
+    zeros_mod = zeros:matrix.copy()
+    ones_mod = ones_matrix.copy()
+    identity_mod = identity_matrix.copy()
+
+    zeros_mod[1, 1] = 5.0
+    ones_mod[1, 2] = 3.0
+    n = identity_mod.shape[0]
+    for i in range(n):
+        identity_mod[i, n-1-i] = 2.0
+    
+    return zeros_mod, ones_mod, identity_mod
 
 
 # Para probar el código:
-# zeros_matrix, ones_matrix, identity_matrix = create_matrices()
-# print("Matriz de ceros creada:\n", zeros_matrix)
-# print("Matriz de unos creada:\n", ones_matrix)
-# print("Matriz identidad creada:\n", identity_matrix)
-# print("*" * 50)
-# zeros_matrix_modif, ones_matrix_modif, identity_matrix_modif = manipulate_matrices(
-#     zeros_matrix,
-#     ones_matrix,
-#     identity_matrix
-# )
-# print("Matriz de ceros modificada:\n", zeros_matrix_modif)
-# print("Matriz de unos modificada:\n", ones_matrix_modif)
-# print("Matriz identidad modificada:\n", identity_matrix_modif)
+if __name__ == "__main__":
+    zeros_matrix, ones_matrix, identity_matrix = create_matrices()
+    print("Matriz de ceros creada:\n", zeros_matrix)
+    print("Matriz de unos creada:\n", ones_matrix)
+    print("Matriz identidad creada:\n", identity_matrix)
+    print("*" * 50)
+    
+    zeros_matrix_modif, ones_matrix_modif, identity_matrix_modif = manipulate_matrices(
+        zeros_matrix,
+        ones_matrix,
+        identity_matrix
+    )
+    
+    print("Matriz de ceros modificada:\n", zeros_matrix_modif)
+    print("Matriz de unos modificada:\n", ones_matrix_modif)
+    print("Matriz identidad modificada:\n", identity_matrix_modif)
+
+
