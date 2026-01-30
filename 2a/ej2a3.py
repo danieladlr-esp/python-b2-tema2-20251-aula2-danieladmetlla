@@ -25,10 +25,20 @@ import typing as t
 def create_and_modify_meshgrid(
     start: int, end: int, step: int
 ) -> t.Tuple[np.ndarray, np.ndarray]:
-    # Write here your code
-    pass
+    x = np.arange(start, end, step, dtype=float)
+    y = np.arange(start, end, step, dtype=float)
+    X, Y = np.meshgrid(x, y)
+    x[0, :] = 99.0
+    return X, Y
 
 
 # Para probar tu código, puedes usar los siguientes parámetros:
-# X, Y = create_and_modify_meshgrid(-5, 5, 1)
-# print(X)
+if __name__ == "__main__":
+    X, Y = create_and_modify_meshgrid(-5, 5, 1)
+    print("Matriz X modificada (con fila 0 = 99):")
+    print(X)
+    print("\nMatriz Y (sin modificar):")
+    print(Y)
+    print(f"\nForma de X: {X.shape}")
+    print(f"Forma de Y: {Y.shape}")
+
